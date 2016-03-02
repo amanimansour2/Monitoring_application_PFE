@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Account</title>
+    </head>
+
+    <body>
+        <h1>Login</h1>
+            <form id="login_form" method="post" action="/monitoring_app/login/">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="30" />
+            <br />
+<br/>
+            Password: <input type="password" name="password" value="" size="30" />
+            <br />
+<br/>
+            <input type="submit" value="Login" size="15" />
+<br/>
+<br/>
+<a href="/monitoring_app/">Retournez à la page initiale ? </a>
+ </form>
+
+    </body>
+</html>
+

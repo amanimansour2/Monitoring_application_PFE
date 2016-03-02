@@ -1,0 +1,19 @@
+
+h1 a {
+    color:#0242b2;
+    font-family: 'Lobster';
+    font-size: 36pt;
+
+}
+h2 b {
+    background-color:#b2dafe;
+    font-family:cursive;
+    font-size: 15pt;
+
+}
+
+body {
+    font-size: 20pt;
+    padding-left: 15px;
+    padding-top:0px;
+}
