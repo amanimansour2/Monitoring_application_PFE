@@ -30,11 +30,23 @@ def index(request):
     context = RequestContext(request)
     context_dict = {'boldmessage': "Vous etes la bienvenue"}
     return render_to_response('monitoring_app/index.html', context_dict, context)
+
+def server1(request):
+    context = RequestContext(request)
+    return render_to_response('monitoring_app/pid/server1.html',{}, context)
+def status(request):
+    context = RequestContext(request)
+    return render_to_response('monitoring_app/pid/status.html',{}, context)
+
 def about(request):
 
     context = RequestContext(request)
     context_dict = {'boldmessage': "Nous sommes ....."}
     return render_to_response('monitoring_app/about.html', context_dict, context)
+def DHCP(request):
+
+    context = RequestContext(request)
+    return render_to_response('monitoring_app/pid/DHCP.html',{}, context)
 
 def register(request):
     context = RequestContext(request)
@@ -93,7 +105,7 @@ def pid (request) :
         Process_pid = request.POST.get('Process pid')
 
     return render_to_response(
-            'monitoring_app/process1.html',{},context)
+            'monitoring_app/status.html',{},context)
 # Serializers define the API representation.
 def pid_rest(request):
     process_name =  request.GET.get('pidname')

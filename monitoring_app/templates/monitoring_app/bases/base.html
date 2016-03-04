@@ -1,0 +1,105 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="monitoring">
+<head>
+<title>monitoring</title>
+<link rel="stylesheet" href="{% static 'monitoring_app/style.css' %}" />
+<link href="{% static 'monitoring_app/bootstrap.css' %}" rel="stylesheet" />
+<link href="{% static 'monitoring_app/font-awesome.css' %}" rel="stylesheet" />
+<link href="{% static 'monitoring_app/style-responsive.css' %}" rel="stylesheet" />
+<script src="{% static "js/jquery.js" %}"></script>
+<script class="include" type="text/javascript" src="{% static "js/jquery.dcjqaccordion.2.7.js" %}"></script>
+<SCRIPT LANGUAGE="javascript" type="text/javascript" src ="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></SCRIPT>
+<script type="text/javascript" src="{% static "js/app.js" %}"></script>
+<script src="{%static "js/common-scripts.js" %}"></script>
+</head>
+
+
+<body ng-controller="monitoringcontroller" 
+>
+<section id="container" >
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"> 
+                  </div>
+              </div>
+              <a class="logo"><b>Monitoring Application</b></a>
+      </header>
+	  
+	  
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <ul class="sidebar-menu" id="nav-accordion">
+                  <li class="mt">
+                      <a class="active" href="/monitoring_app/pid/">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Servers</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="DHCP.html">DHCP</a></li>
+                          <li><a  href="gallery.html">DNS</a></li>
+                          <li><a  href="todo_list.html">FreeSwitch</a></li>
+                          <li><a  href="todo_list.html">ntp</a></li>
+                      </ul>
+                  </li>
+              </ul>
+           </div>
+      </aside>
+		{% block content %} {% endblock  %}
+			  <footer class="site-footer">
+					<div class="text-center">
+							 2016 Telnet_SUPCOM
+						 <a href="/monitoring_app/pid/" class="go-top">
+							   <i class="fa fa-angle-up"></i>
+						 </a>
+				   </div>
+			  </footer>
+	  
+</section>
+
+<script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+        
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event", }
+                ]
+            });
+        });
+        
+        
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>
+  
+	
+	
+</body>
+ </html>
+
