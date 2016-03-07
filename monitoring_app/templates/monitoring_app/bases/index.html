@@ -52,7 +52,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">              	  	
                   <li class="mt">
-                      <a class="active" href="status.html">
+                      <a class="active" href="{% url "status" %}">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -63,10 +63,18 @@
                           <span>Machines</span>
                       </a>
                       <ul class="sub">
-                          <li><a href="server1.html">Machine 1</a>
-						  </li>
-                          <li><a  href="server2.html">Machine 2</a></li>
-                          <li><a  href="server3.html">Machine 3</a></li>
+			             {% for machine in machine_detail %}
+                          <li><a href="{% url "machine_detail" %}?machine_id={{ machine.id }}">{{ machine.name }}</a></li>
+						  {% endfor %}
+                      </ul>
+                  </li>
+				  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-tasks"></i>
+                          <span>Setting</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="{% url "add_machine" %}"> Add machine</a></li>
                       </ul>
                   </li>
               </ul>
@@ -83,7 +91,7 @@
           <section class="wrapper">
 
               <div class="row">
-                  <div class="col-lg-9 main-chart" margin-top="0px">
+                  <div class="col-lg-14 main-chart" margin-top="20px">
                   {% block content %} {% endblock  %}
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
                   
@@ -93,7 +101,7 @@
 
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer">
+      <footer class="site-footer" margin-top="0px">
           <div class="text-center">
               2016 Telnet-Sup'com
               <a href="status.html#" class="go-top">

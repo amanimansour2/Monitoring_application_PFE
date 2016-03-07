@@ -1,5 +1,7 @@
 from django.contrib import admin
 from monitoring_app.models import UserProfile
-# Register your models here.
+from monitoring_app.models import Machine
 
+# Register your models here.
+admin.site.register(Machine)
 admin.site.register(UserProfile)

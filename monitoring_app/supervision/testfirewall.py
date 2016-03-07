@@ -1,14 +1,18 @@
 #!/usr/bin/python
 import pexpect
 from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
+from monitoring_app.models import Machine
 import getpass
 import sys
 import iptc
-def get_firewall():
+def get_firewall(id1):
     try:
+        machine=Machine.objects.get(id=id1)
+        user=str(machine.username) 
+        address=str(machine.address)
+        password=str(machine.password)
         s = pxssh.pxssh()
-        s.login ("192.168.3.6","amani", "amani")
-        #s.login ("192.168.3.6","root", "amani")
+        s.login (address,user, password)
         s.sendline('su -')
         s.sendline('amani')
         s.sendline("python checking_scripts/firewall_test.py")   # run a command

@@ -1,12 +1,17 @@
 import pexpect
+from monitoring_app.models import Machine
 from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
 import getpass
 import sys
 import time
-def get_delay():
+def get_delay(id1):
     try:
+        machine=Machine.objects.get(id=id1)
+        user=str(machine.username) 
+        address=str(machine.address)
+        password=str(machine.password)
         s = pxssh.pxssh()
-        s.login ("192.168.3.6","amani", "amani")
+        s.login (address,user, password)
         s.sendline('python /home/amani/testscript/delay.py ' )   # run a command
         s.prompt()
                   # match the prompt

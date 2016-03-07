@@ -5,69 +5,20 @@
       <section id="main-content">
           <section class="wrapper">
                   <div class="main-chart"><div>
-                  <h2><b>Check the status of your Machines </b></h2><br/>
+                  <h2><b>Check the status of your Machines </b></h2><br/>						  
+						 {% for machine in machine_detail %}
 						 <div class="col-md-3 col-sm-3 box0">
                   			<div class="box1">
-							    <h2> Machine 1</h2>
+							
+							    <h2> {{ machine.name }}</h2>
 					  			<span class="li_data"></span>
 					  			<h3>OK!</h3>
                   			</div>
 					  			<p>Your machine is working perfectly. Relax & enjoy.</p>
 								<br/>
                   		</div>
-                  	
-                          <div class="col-md-3 col-sm-3 box0">
-                  			<div class="box1">
-							    <h2> Machine 2</h2>
-					  			<span class="li_data"></span>
-					  			<h3>OK!</h3>
-                  			</div>
-					  			<p>Your machine is working perfectly. Relax & enjoy.</p>
-                  		</div>
-						 <div class="col-md-3 col-sm-3 box0">
-                  			<div class="box1">
-							    <h2> Machine 3</h2>
-					  			<span class="li_data"></span>
-					  			<h3>OK!</h3>
-                  			</div>
-					  			<p>Your machine is working perfectly. Relax & enjoy.</p>
-                  		</div>
-						<div class="main-chart"><div>
-						</br></br></br></br></br></br></br></br></br></br>
-						</div>
-						</div>
+                  	{% endfor %} 
                   </div>
-				  <!--
-				  <div class="row mt">
-                      <!-- SERVER STATUS PANELS 
-                      	<div class="col-md-9 col-sm-9 mb">
-                      		<div class="white-panel pn donut-chart">
-                      			<div class="white-header">
-						  			<h5>SERVER LOAD</h5>
-                      			</div>
-								<div class="row">
-									<div class="col-sm-6 col-xs-6 goleft">
-										<p><i class="fa fa-database"></i> 70%</p>
-									</div>
-	                      		</div>
-								<canvas id="serverstatus01" height="120" width="120"></canvas>
-								<script>
-									var doughnutData = [
-											{
-												value: 70,
-												color:"#68dff0"
-											},
-											{
-												value : 30,
-												color : "#fdfdfd"
-											}
-										];
-										var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-								</script>
-	                      	</div><! --/grey-panel
-                      	</div><!-- /col-md-4-->
-				  
-				  
 			 </section>
 			 </section>
 {% endblock %}

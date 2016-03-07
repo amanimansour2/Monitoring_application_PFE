@@ -1,5 +1,6 @@
 from django.shortcuts import render ,render_to_response
-from monitoring_app.forms import UserForm
+from monitoring_app.models import UserProfile,Machine
+from monitoring_app.forms import UserForm,MachineForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponseRedirect, HttpResponse ,HttpRequest
@@ -30,24 +31,46 @@ def index(request):
     context = RequestContext(request)
     context_dict = {'boldmessage': "Vous etes la bienvenue"}
     return render_to_response('monitoring_app/index.html', context_dict, context)
-
-def server1(request):
+def detail(request):
     context = RequestContext(request)
-    return render_to_response('monitoring_app/pid/server1.html',{}, context)
+    global machine_id
+    if request.method == 'GET': 
+        machine_id = request.GET.get('machine_id')
+        print "in view detail, machine_id=", machine_id
+    return render_to_response('monitoring_app/pid/machine.html',data(), context)
+
+def data ():
+    machine = Machine.objects.all()
+    data = {
+    "machine_detail" : machine
+    }
+    return data
 def status(request):
     context = RequestContext(request)
-    return render_to_response('monitoring_app/pid/status.html',{}, context)
-
+    return render_to_response('monitoring_app/pid/status.html',data(), context)
 def about(request):
 
     context = RequestContext(request)
     context_dict = {'boldmessage': "Nous sommes ....."}
     return render_to_response('monitoring_app/about.html', context_dict, context)
-def DHCP(request):
-
+def add_machine(request):
     context = RequestContext(request)
-    return render_to_response('monitoring_app/pid/DHCP.html',{}, context)
+    registered = False
+    if request.method == 'POST':
+        machine_form = MachineForm(data=request.POST)
+        if machine_form.is_valid():
+            machine = machine_form.save()
+            machine.save()
+            registered = True
+        else:
+            print machine_form.errors
 
+    else:
+        machine_form = MachineForm()
+    return render_to_response(
+            'monitoring_app/pid/add_machine.html',
+            dict({'machine_form': machine_form, 'registered': registered}.items()+data().items()),
+            context)
 def register(request):
     context = RequestContext(request)
     registered = False
@@ -66,7 +89,6 @@ def register(request):
             'monitoring_app/register.html',
             {'user_form': user_form, 'registered': registered},
             context)
-
 def user_login(request):
 
     context = RequestContext(request)
@@ -89,7 +111,6 @@ def user_login(request):
 
     else:
         return render_to_response('monitoring_app/login.html', {}, context)
-
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
@@ -99,17 +120,17 @@ def user_logout(request):
     return HttpResponseRedirect('/monitoring_app/')
 @login_required
 def pid (request) :
+    print "in pid view"
+    #machine = Machine.objects.all()
     context = RequestContext(request)
     if request.method == 'GET':
         Process_name = request.GET.get('Process name')
-        Process_pid = request.POST.get('Process pid')
-
     return render_to_response(
-            'monitoring_app/status.html',{},context)
+            'monitoring_app/status.html',data(),context)
 # Serializers define the API representation.
 def pid_rest(request):
     process_name =  request.GET.get('pidname')
-    message = tp.get_pid(process_name)
+    message = tp.get_pid(process_name,machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -118,7 +139,7 @@ def pid_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def statusfirew_rest(request):
-    message=tf.get_firewall()
+    message=tf.get_firewall(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -127,7 +148,7 @@ def statusfirew_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def defaultroute_rest(request):
-    message=tr.get_route()
+    message=tr.get_route(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -136,7 +157,7 @@ def defaultroute_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def delay_rest(request):
-    message=td.get_delay()
+    message=td.get_delay(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -145,7 +166,7 @@ def delay_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def services_rest(request):
-    message=ts.get_services()
+    message=ts.get_services(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -153,9 +174,8 @@ def services_rest(request):
     messages = json.loads(message)
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
-
 def diskusage_rest(request):
-    message=tdis.get_disk()
+    message=tdis.get_disk(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -164,7 +184,7 @@ def diskusage_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def volfile_rest(request):
-    message=tv.get_volfile()
+    message=tv.get_volfile(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
@@ -172,9 +192,8 @@ def volfile_rest(request):
     messages = json.loads(message)
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
-
 def cpu_rest(request):
-    message=tc.get_cpu()
+    message=tc.get_cpu(machine_id)
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]

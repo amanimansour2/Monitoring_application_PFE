@@ -31,7 +31,8 @@ urlpatterns += patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^about/$', views.about, name='about'),
     url(r'^register/$', views.register, name='register'), # ADD NEW PATTERN!
-    url(r'^login/$', views.user_login, name='login'),
+    url(r'^pid/add_machine.html$', views.add_machine, name='add_machine'), 
+	url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^pid/$', views.pid, name='pid'),
     url(r'^getpid/$',views.pid_rest, name='pid_rest'),
@@ -42,8 +43,9 @@ urlpatterns += patterns('',
     url(r'^disk/$',views.diskusage_rest, name='diskusage_rest'),
     url(r'^voluminousfile/$',views.volfile_rest, name='volfile_rest'),
     url(r'^cpu/$',views.cpu_rest, name='cpu_rest'),
-    url(r'^pid/server1.html$',views.server1, name='server1'),
-    url(r'^pid/status.html$',views.status, name='status'),
+    url(r'^pid/machine/$',views.detail, name='machine_detail'),
+    url(r'^pid/status/$',views.status, name='status'),
+    url(r'^pid/add_machine/$',views.add_machine, name='add_machine'),
 
 )
     

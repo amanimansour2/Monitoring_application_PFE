@@ -109,6 +109,9 @@ a, a:hover, a:focus {
   color: #fff;
   background-color: #ac92ec;
   border-color: #967adc;
+  
+  position:relative;
+    left: 100px;
 }
 .btn-theme02:hover,
 .btn-theme02:focus,
@@ -257,7 +260,6 @@ ul.top-menu > li > .logout {
     height:17px;
     width:17px;
     display:inline-block;
-    background: url("../img/nav-expand.png") no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -1757,11 +1759,16 @@ label {
 .round-form {
 	border-radius: 500px;
 	-webkit-border-radius: 500px;
+	
 }
 
 @media (min-width: 768px) {
 		.form-horizontal .control-label {
 		text-align: left;
+		color:black;
+		size: 25px;
+		font-style: italic;
+		font-size:15px;
 	}
 }
 
