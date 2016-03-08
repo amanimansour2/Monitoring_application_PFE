@@ -9,10 +9,13 @@
 						 {% for machine in machine_detail %}
 						 <div class="col-md-3 col-sm-3 box0">
                   			<div class="box1">
-						<div ng-controller="monitoringcontroller">
+						       <div ng-controller="monitoringcontroller">
 							    <h2> {{ machine.name }}</h2>
 					  			<span class="li_data"></span>
-								<h3><b>status :<input type="text"  ng-model="" size="20"/><br/></b></h3>
+								<!--<h3><b>status :<input type="text" ng-change="statusge()" size="20"/><br/></b></h3>-->
+				</br>
+						<button type="button" class="btn btn-theme"ng-click="statusge({{machine.id}})">Get</button>
+		              <h6><b>Status     :<input type="text" ng-model="status" size="20"/><br/></b></h6>
 								</div>
                   			</div>
 					  			<p>Your machine is working perfectly. Relax & enjoy.</p>

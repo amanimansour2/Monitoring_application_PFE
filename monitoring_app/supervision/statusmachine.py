@@ -1,19 +1,19 @@
+#!/usr/bin/python 
 import pexpect
 from monitoring_app.models import Machine
 from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
 import getpass
 import sys
 import time
-def get_status():
+def get_statuss(id1):
     try:
-        #machine=Machine.objects.get(id=id1)
-        #user=str(machine.username) 
-        #address=str(machine.address)
-        #password=str(machine.password)
+        machine=Machine.objects.get(id=id1)
+        user=str(machine.username) 
+        address=str(machine.address)
+        password=str(machine.password)
         s = pxssh.pxssh()
-        s.login ("192.168.3.6","amani", "amani")
-        #s.login (address,user, password)
-        s.sendline('python /home/amani/generalstatus.py ' ) 
+        s.login (address,user, password)
+        s.sendline('python /home/amani/generalstatus.py' ) 
         s.prompt()
         message = s.before         
         s.logout()
@@ -22,4 +22,3 @@ def get_status():
         print "pxssh failed on login."
         print str(e)
         return 0
-

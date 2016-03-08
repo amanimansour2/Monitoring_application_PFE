@@ -13,6 +13,7 @@ import json
 import subprocess
 import sys
 import os
+import requests
 import re
 import pexpect
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -149,17 +150,15 @@ def statusfirew_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def statusgeneral_rest(request):
-    print "begin view"
-    message=tg.get_status()
-    print "get status conne"
+    machine_id1 = request.GET.get('id')
+    message = tg.get_statuss(machine_id1)
+    print "c bon"
     i=message.find('{')
     j=message.find('}')+1
     message=message[i:j]
-    print message
     message= message.replace("'", "\"")
     messages = json.loads(message)
     data = json.dumps(messages)
-    print data
     return HttpResponse(data, content_type='application/json')
 def defaultroute_rest(request):
     message=tr.get_route(machine_id)
