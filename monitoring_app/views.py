@@ -22,6 +22,7 @@ from .supervision import testfirewall as tf
 from .supervision import testdelay as td
 from .supervision import testservices as ts
 from .supervision import testroute as tr
+from .supervision import statusmachine as tg
 from IPython import embed
 from .supervision import testdisk as tdis
 from .supervision import testvolfile as tv
@@ -146,6 +147,19 @@ def statusfirew_rest(request):
     message= message.replace("'", "\"")
     messages = json.loads(message)
     data = json.dumps(messages)
+    return HttpResponse(data, content_type='application/json')
+def statusgeneral_rest(request):
+    print "begin view"
+    message=tg.get_status()
+    print "get status conne"
+    i=message.find('{')
+    j=message.find('}')+1
+    message=message[i:j]
+    print message
+    message= message.replace("'", "\"")
+    messages = json.loads(message)
+    data = json.dumps(messages)
+    print data
     return HttpResponse(data, content_type='application/json')
 def defaultroute_rest(request):
     message=tr.get_route(machine_id)

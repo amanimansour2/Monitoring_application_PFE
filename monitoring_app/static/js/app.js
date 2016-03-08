@@ -1,8 +1,12 @@
+
 (function(){
 var app= angular.module('monitoring', []);
 app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http) {
     
-    $scope.firewall='status firewall';
+    $scope.status = function () {
+          return "ffffff";}   
+		  
+	$scope.firewall='status firewall';
     $scope.getfirewallstatus = function() {
         $http({
                 method : "GET",

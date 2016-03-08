@@ -1,7 +1,16 @@
 (function(){
 var app= angular.module('monitoring', []);
 app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http) {
-    
+    $scope.status = function($id) {
+        $http({
+		method : "GET",
+		url : "/monitoring_app/statusgeneral/",
+		}).then(function(response) {
+	    $scope.status = "eeeee";
+		});			}
+		
+		
+	 
     $scope.firewall='status firewall';
 	$scope.route='default route';
 	$scope.cpu='cpu usage';
@@ -14,6 +23,7 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 	$scope.delay = 'status';
 	$scope.input = "enter the process name";
     $scope.name = 'pid number';
+	
 	$scope.getmachine1 = function() {
 		
 			  $http({
