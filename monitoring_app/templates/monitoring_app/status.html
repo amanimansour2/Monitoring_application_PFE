@@ -12,14 +12,14 @@
 						       <div ng-controller="monitoringcontroller">
 							    <h2> {{ machine.name }}</h2>
 					  			<span class="li_data"></span>
-								<!--<h3><b>status :<input type="text" ng-change="statusge()" size="20"/><br/></b></h3>-->
-				</br>
-						<button type="button" class="btn btn-theme"ng-click="statusge({{machine.id}})">Get</button>
-		              <h6><b>Status     :<input type="text" ng-model="status" size="20"/><br/></b></h6>
+				                 </br>
+						<button type="button" class="btn btn-theme" ng-click="statusge({{machine.id}})">Get</button></br></br>
+		              <h5><b>Status:<input  type="text" ng-model="status" size="12"/><br/></b></h5>
+					         
+      
 								</div>
                   			</div>
-					  			<p>Your machine is working perfectly. Relax & enjoy.</p>
-								<br/>
+					  			
                   		</div>
                   	{% endfor %} 
                   </div>

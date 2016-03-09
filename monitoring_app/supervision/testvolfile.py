@@ -4,6 +4,7 @@ from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
 from monitoring_app.models import Machine
 import getpass
 import sys
+import json
 def get_volfile(id1):
     try:
         machine=Machine.objects.get(id=id1)
@@ -14,10 +15,15 @@ def get_volfile(id1):
         s.login (address,user, password)
         s.sendline("python /home/amani/testscript/voluminousfile.py")   # run a command
         s.prompt()             # match the prompt
-        message=s.before          # print everything before the prompt.
+        message=s.before  
+        i=message.find('{')
+        j=message.find('}')+1
+        message=message[i:j]
+        message= message.replace("'", "\"")
+        messages = json.loads(message)
         s.sendline ('exit')
         s.logout()
-        return message
+        return messages['volfile']
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)

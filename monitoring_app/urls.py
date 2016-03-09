@@ -45,7 +45,7 @@ urlpatterns += patterns('',
     url(r'^voluminousfile/$',views.volfile_rest, name='volfile_rest'),
     url(r'^cpu/$',views.cpu_rest, name='cpu_rest'),
     url(r'^pid/machine/$',views.detail, name='machine_detail'),
-    url(r'^pid/status/$',views.status, name='status'),
+    url(r'^pid/$',views.status, name='status'),
     url(r'^pid/add_machine/$',views.add_machine, name='add_machine'),
 
 )

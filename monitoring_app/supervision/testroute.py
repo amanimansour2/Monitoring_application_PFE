@@ -2,7 +2,7 @@
 import pexpect
 from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
 from monitoring_app.models import Machine
-
+import json 
 import getpass
 import sys
 def get_route(id1):
@@ -15,10 +15,15 @@ def get_route(id1):
         s.login (address,user, password)
         s.sendline("python /home/amani/testscript/defaultrout.py")   # run a command
         s.prompt()             # match the prompt
-        message=s.before          # print everything before the prompt.
+        message=s.before  
+        i=message.find('{')
+        j=message.find('}')+1
+        message=message[i:j]
+        message= message.replace("'", "\"")
+        messages = json.loads(message)
         s.sendline ('exit')
         s.logout()
-        return message
+        return messages['route']
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)

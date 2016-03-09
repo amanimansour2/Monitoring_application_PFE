@@ -8,38 +8,9 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 		url : "/monitoring_app/statusgeneral/",
 	    params:{"id" : $id},
 		}).then(function(response) {
-			volfile=response.data.volfile;
-			delay=response.data.delay;
-			dhcpstatus=response.data.dhcpstatus;
-			ntpstatus=response.data.ntpstatus;
-			dnsstatus=response.data.dnsstatus;
-			freestatus=response.data.freestatus;
-			disk=response.data.disk;
-			cpu=response.data.cpu;
-			route=response.data.route;
+			$scope.status=response.data.status;
+			alert($scope.status);
 			
-			if (delay =="True"){ 
-			  $scope.status ="Not OK !!";
-			}else{ 
-			if (route =="False"){ 
-			  $scope.status ="Not OK !!";
-			}else{
-			if (dhcpstatus =="OFF"){ 
-			  $scope.status ="Not OK !!";
-			}else{
-			if (ntpstatus =="OFF"){ 
-			  $scope.status ="Not OK !!";
-			}else{
-			if (dnsstatus =="OFF"){ 
-			  $scope.status ="Not OK !!";
-			}else{
-			if (freestatus =="OFF"){ 
-			  $scope.status ="Not OK !!";
-			}else{
-			if (volfile =="True"){ 
-			  $scope.status ="Not OK !!";
-			}else{
-			$scope.status ="OK !!!";} }}}}}}
 		});			}
 		
 		

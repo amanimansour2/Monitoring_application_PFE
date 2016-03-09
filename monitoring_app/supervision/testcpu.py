@@ -3,6 +3,7 @@ from monitoring_app.models import Machine
 import pexpect
 from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
 import getpass
+import json
 import sys
 def get_cpu(id1):
     try:
@@ -14,10 +15,16 @@ def get_cpu(id1):
         s.login (address,user, password)
         s.sendline("python /home/amani/testscript/cpu.py")   # run a command
         s.prompt()             # match the prompt
-        message=s.before          # print everything before the prompt.
+        message=s.before  
+        message=s.before  
+        i=message.find('{')
+        j=message.find('}')+1
+        message=message[i:j]
+        message= message.replace("'", "\"")
+        messages = json.loads(message)
         s.sendline ('exit')
         s.logout()
-        return message
+        return messages['cpu']
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)

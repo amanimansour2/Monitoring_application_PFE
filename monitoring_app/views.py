@@ -141,79 +141,39 @@ def pid_rest(request):
     data = json.dumps(messages)
     return HttpResponse(data, content_type='application/json')
 def statusfirew_rest(request):
-    message=tf.get_firewall(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    fire = tf.get_firewall(machine_id)
+    data = json.dumps({"firewall":fire})
     return HttpResponse(data, content_type='application/json')
 def statusgeneral_rest(request):
     machine_id1 = request.GET.get('id')
-    message = tg.get_statuss(machine_id1)
-    print "c bon"
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    status = tg.get_statuss(machine_id1)
+    data = json.dumps({"status":status})
     return HttpResponse(data, content_type='application/json')
 def defaultroute_rest(request):
-    message=tr.get_route(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    route = tr.get_route(machine_id)
+    data = json.dumps({"route":route})
     return HttpResponse(data, content_type='application/json')
 def delay_rest(request):
-    message=td.get_delay(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    delay = td.get_delay(machine_id)
+    data = json.dumps({"delay":delay})
     return HttpResponse(data, content_type='application/json')
 def services_rest(request):
-    message=ts.get_services(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message = json_acceptable_string = message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    dhcpstatus,dnsstatus,freestatus,ntpstatus = ts.get_services(machine_id)
+    data = json.dumps({"dhcpstatus":dhcpstatus,"dnsstatus":dnsstatus,"freestatus":freestatus,"ntpstatus":ntpstatus})
     return HttpResponse(data, content_type='application/json')
 def diskusage_rest(request):
-    message=tdis.get_disk(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    disk = tdis.get_disk(machine_id)
+    data = json.dumps({"disk":disk})
     return HttpResponse(data, content_type='application/json')
 def volfile_rest(request):
-    message=tv.get_volfile(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    volfile = tv.get_volfile(machine_id)
+    data = json.dumps({"volfile":volfile})
     return HttpResponse(data, content_type='application/json')
 def cpu_rest(request):
-    message=tc.get_cpu(machine_id)
-    i=message.find('{')
-    j=message.find('}')+1
-    message=message[i:j]
-    message= message.replace("'", "\"")
-    messages = json.loads(message)
-    data = json.dumps(messages)
+    cpu = tc.get_cpu(machine_id)
+    data = json.dumps({"cpu":cpu})
     return HttpResponse(data, content_type='application/json')
+	
 
 
 

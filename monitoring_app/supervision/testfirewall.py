@@ -5,6 +5,7 @@ from monitoring_app.models import Machine
 import getpass
 import sys
 import iptc
+import json
 def get_firewall(id1):
     try:
         machine=Machine.objects.get(id=id1)
@@ -17,10 +18,15 @@ def get_firewall(id1):
         s.sendline('amani')
         s.sendline("python checking_scripts/firewall_test.py")   # run a command
         s.prompt()             # match the prompt
-        message=s.before          # print everything before the prompt.
+        message=s.before  
+        i=message.find('{')
+        j=message.find('}')+1
+        message=message[i:j]
+        message= message.replace("'", "\"")
+        messages = json.loads(message)
         s.sendline ('exit')
         s.logout()
-        return message
+        return messages['firewall']
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)
