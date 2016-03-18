@@ -12,12 +12,20 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 			alert($scope.status);
 			
 		});			}
+	$scope.getmachine2 = function() {
+		     alert("eeeeeeeeeeeeeeeeeeeeeee")
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/regphone/",
+						 }).then(function(response) {
+								   $scope.phone= response.data.phone;
+			});  }	
 		
 		
-	 
     $scope.firewall='status firewall';
 	$scope.route='default route';
-	$scope.cpu='cpu usage';
+	
+    $scope.cpu='cpu usage';
 	$scope.disk='usage disk';
 	$scope.volfile='voluminous file';
     $scope.servicedhcp='status service dhcp';
@@ -95,9 +103,7 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
                               $scope.delay= response.data.delay;
                         });}
     
-    
-    
-}]);
+            }]);
 })();
 
 

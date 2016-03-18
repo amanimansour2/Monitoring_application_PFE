@@ -14,10 +14,10 @@ def get_firewall(id1):
         address=str(machine.address)
         password=str(machine.password)
         s = pxssh.pxssh()
-        s.login (address,user, password)
         s.sendline('su -')
         s.sendline('amani')
-        s.sendline("python /root/checking_scripts/firewall_test.py")   # run a command
+        s.login (address,user, password) 
+        s.sendline("python /home/amani/testscript/firewall_test.py")   # run a command
         s.prompt()             # match the prompt
         message=s.before  
         print message 
@@ -26,7 +26,6 @@ def get_firewall(id1):
         message=message[i:j]
         message= message.replace("'", "\"")
         messages = json.loads(message)
-        s.sendline ('exit')
         s.logout()
         return messages['firewall']
     except pxssh.ExceptionPxssh, e:

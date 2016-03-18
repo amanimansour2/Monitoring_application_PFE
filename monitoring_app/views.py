@@ -28,6 +28,7 @@ from IPython import embed
 from .supervision import testdisk as tdis
 from .supervision import testvolfile as tv
 from .supervision import testcpu as tc
+from .supervision import testregphone as treg
 # Create your views here.
 def index(request):
     context = RequestContext(request)
@@ -38,8 +39,13 @@ def detail(request):
     global machine_id
     if request.method == 'GET': 
         machine_id = request.GET.get('machine_id')
-        print "in view detail, machine_id=", machine_id
     return render_to_response('monitoring_app/pid/machine.html',data(), context)
+def freedetail(request):
+    context = RequestContext(request)
+    global machine_id
+    if request.method == 'GET': 
+        machine_id = request.GET.get('machine_id')
+    return render_to_response('monitoring_app/pid/freeswitch.html',data(), context)
 
 def data ():
     machine = Machine.objects.all()
@@ -172,6 +178,11 @@ def volfile_rest(request):
 def cpu_rest(request):
     cpu = tc.get_cpu(machine_id)
     data = json.dumps({"cpu":cpu})
+    return HttpResponse(data, content_type='application/json')
+def regphone_rest(request):
+    print "ffffffffffffffffffffffffff"
+    phone = treg.get_regphone(machine_id)
+    data = json.dumps({"phone":phone})
     return HttpResponse(data, content_type='application/json')
 	
 

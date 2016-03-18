@@ -77,6 +77,18 @@
                           <li><a  href="{% url "add_machine" %}"> Add machine</a></li>
                       </ul>
                   </li>
+				  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-tasks"></i>
+                          <span>FreeSWITCH</span>
+                      </a>
+                      <ul class="sub">
+			             {% for machine in machine_detail %}
+                          <li><a href="{% url "freeswitch_detail" %}?machine_id={{ machine.id }}">{{ machine.name }}</a></li>
+						  {% endfor %}
+                      </ul>
+                  </li>
+				  
               </ul>
               <!-- sidebar menu end-->
           </div>
