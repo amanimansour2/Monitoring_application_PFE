@@ -1,6 +1,6 @@
 from django.shortcuts import render ,render_to_response
-from monitoring_app.models import UserProfile,Machine
-from monitoring_app.forms import UserForm,MachineForm
+from monitoring_app.models import UserProfile,Machine,Call
+from monitoring_app.forms import UserForm,MachineForm,CallForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponseRedirect, HttpResponse ,HttpRequest
@@ -49,6 +49,7 @@ def freedetail(request):
 
 def data ():
     machine = Machine.objects.all()
+    call = Call.objects.all()
     data = {
     "machine_detail" : machine
     }
@@ -78,6 +79,24 @@ def add_machine(request):
     return render_to_response(
             'monitoring_app/pid/add_machine.html',
             dict({'machine_form': machine_form, 'registered': registered}.items()+data().items()),
+            context)
+def general_conf(request):
+    context = RequestContext(request)
+    registered = False
+    if request.method == 'POST':
+        call_form = CallForm(data=request.POST)
+        if call_form.is_valid():
+            call = call_form.save()
+            call.save()
+            registered = True
+        else:
+            print call_form.errors
+
+    else:
+        call_form = CallForm()
+    return render_to_response(
+            'monitoring_app/pid/general_conf.html',
+            dict({'call_form': call_form, 'registered': registered}.items()+data().items()),
             context)
 def register(request):
     context = RequestContext(request)

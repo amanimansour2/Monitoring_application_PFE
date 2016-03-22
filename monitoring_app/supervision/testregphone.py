@@ -23,7 +23,7 @@ def get_regphone(id1):
         j=message.find('}')+1
         message=message[i:j]
         message= message.replace("'", "\"")
-        embed()
+       
         messages = json.loads(message)
         s.sendline ('exit')
         s.logout()

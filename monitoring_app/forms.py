@@ -1,4 +1,4 @@
-from monitoring_app.models import UserProfile,Machine
+from monitoring_app.models import UserProfile,Machine,Call
 from django.contrib.auth.models import User 
 from django import forms
 class UserForm(forms.ModelForm):
@@ -14,3 +14,8 @@ class MachineForm(forms.ModelForm):
     class Meta:
         model = Machine
         fields = ('name', 'address', 'username','password')
+class CallForm(forms.ModelForm):
+	
+    class Meta:
+        model = Call
+        fields = ('numerosrc', 'addresssrc', 'numerodest','addressdest')

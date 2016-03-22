@@ -1,0 +1,34 @@
+{% extends "monitoring_app/bases/index.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+      <section id="main-content">
+          <section class="wrapper">
+	         <div class=" main-chart">
+          		<div class="col-lg-6">
+                  <div class="form-panel">
+                  	   <h4 class="mb"><i class="fa fa-angle-right"></i> Configure a call:</h4>
+					   {% if registered %}
+                       <h1></h1>
+                            <a href="/monitoring_app/pid/"></a><br />
+                           {% else %}
+                           <form id="machine_form" method="post" action="/monitoring_app/pid/general_conf/"
+                                             enctype="multipart/form-data">
+
+                                        {% csrf_token %}
+
+                                       {{ call_form.as_p }}
+                                              <!-- {{ profile_form.as_p }}-->
+						  <button type="submit"  name="submit" class="btn btn-theme02">Conf a call </button>
+                                              </form>
+                                    {% endif %}
+					   
+                      </form>
+					   </form>
+                  </div>	
+          	</div>
+			</div>
+		</section>
+      </section>
+{% endblock %}

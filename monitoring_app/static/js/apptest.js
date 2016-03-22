@@ -9,11 +9,9 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 	    params:{"id" : $id},
 		}).then(function(response) {
 			$scope.status=response.data.status;
-			alert($scope.status);
 			
 		});			}
 	$scope.getmachine2 = function() {
-		     alert("eeeeeeeeeeeeeeeeeeeeeee")
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/regphone/",

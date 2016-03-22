@@ -49,6 +49,7 @@ urlpatterns += patterns('',
     url(r'^pid/FreeSWITCH/$',views.freedetail, name='freeswitch_detail'),
     url(r'^pid/$',views.status, name='status'),
     url(r'^pid/add_machine/$',views.add_machine, name='add_machine'),
+    url(r'^pid/general_conf/$',views.general_conf, name='general_conf'),
 
 )
     

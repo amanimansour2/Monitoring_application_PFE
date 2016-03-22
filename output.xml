@@ -1,0 +1,32 @@
+<configuration description="Network Lists" name="acl.conf">
+  <network-lists>
+    
+
+    <list default="allow" name="lan">
+      <node cidr="192.168.42.0/24" type="deny" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+      <node cidr="192.168.42.42/32" type="allow" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+     <node cidr="192.168.3.6/32" type="allow" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+
+    </list>
+
+    
+    <list default="deny" name="domains">
+      
+
+      <node domain="$${domain}" type="allow" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+      <node cidr="192.168.3.6/32" type="allow" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+      
+      
+    </list>
+
+  </network-lists>
+<network-lists>
+    <list default="allow" name="lan">
+    <node cidr="192.168.3.6/32" type="allow" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+    </list>
+	 <list default="deny" name="domains">
+      <node cidr="192.168.3.6/32" type="allow" updated="yes">{'cidr': '192.168.3.7/32', 'type': 'allow'}</node>
+    </list>
+
+  </network-lists>
+</configuration>
