@@ -9,13 +9,18 @@ import sys
 def get_regphone(id1):
     try:
         machine=Machine.objects.get(id=id1)
-        print "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
         user=str(machine.username) 
         address=str(machine.address)
         password=str(machine.password)
         s = pxssh.pxssh()
         s.login (address,user, password)
-        s.sendline("python /home/amani/testscript/regestredphone.py")   # run a command
+        remotehost=password+"@"+address
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/regestredphone.py", remotehost, "/home/amani")
+        child = pexpect.spawn(COMMAND)
+        child.expect(remotehost+"'s password:")
+        child.sendline(password)
+        child.expect(pexpect.EOF)
+        s.sendline("python /home/amani/regestredphone.py")   # run a command
         s.prompt()             # match the prompt
         message=s.before  
         message=s.before  

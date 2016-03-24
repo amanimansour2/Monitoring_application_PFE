@@ -17,9 +17,16 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 						url : "/monitoring_app/regphone/",
 						 }).then(function(response) {
 								   $scope.phone= response.data.phone;
-			});  }	
-		
-		
+			});  }
+    $scope.getmachine3 = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/freeswitchcommunication/",
+						 }).then(function(response) {
+								   $scope.stat= response.data.stat;
+
+			});  }			
+			
     $scope.firewall='status firewall';
 	$scope.route='default route';
 	

@@ -5,6 +5,7 @@ from monitoring_app.models import Machine
 import getpass
 import sys
 import json
+import os
 def get_volfile(id1):
     try:
         machine=Machine.objects.get(id=id1)
@@ -13,9 +14,16 @@ def get_volfile(id1):
         password=str(machine.password)
         s = pxssh.pxssh()
         s.login (address,user, password)
-        s.sendline("python /home/amani/testscript/voluminousfile.py")   # run a command
+        remotehost=password+"@"+address
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/voluminousfile.py", remotehost, "/home/amani")
+        child = pexpect.spawn(COMMAND)
+        child.expect(remotehost+"'s password:")
+        child.sendline(password)
+        child.expect(pexpect.EOF)
+        s.sendline("python /home/amani/voluminousfile.py")   # run a command
         s.prompt()             # match the prompt
-        message=s.before  
+        message=s.before 
+        print message		
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]
@@ -23,9 +31,12 @@ def get_volfile(id1):
         messages = json.loads(message)
         s.sendline ('exit')
         s.logout()
+        print messages
         return messages['volfile']
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)
         return 0
+
+
 

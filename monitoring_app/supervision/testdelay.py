@@ -14,7 +14,13 @@ def get_delay(id1):
         password=str(machine.password)
         s = pxssh.pxssh()
         s.login (address,user, password)
-        s.sendline('python /home/amani/testscript/delay.py ' )   # run a command
+        remotehost=password+"@"+address
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/delay.py", remotehost, "/home/amani")
+        child = pexpect.spawn(COMMAND)
+        child.expect(remotehost+"'s password:")
+        child.sendline(password)
+        child.expect(pexpect.EOF)
+        s.sendline('python /home/amani/delay.py ' )   # run a command
         s.prompt()
         message = s.before          # print everything before the prompt.
         i=message.find('{')

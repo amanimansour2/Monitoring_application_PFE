@@ -11,10 +11,11 @@ class UserProfile(models.Model):
 		
 		
 class Machine(models.Model):
-    name = models.CharField(default="Machine 1",max_length=50)
+    name= models.CharField(default="Machine 1",max_length=30)
     address = models.CharField(default='168.85.69.4',max_length=12)
     username=models.CharField(default="Foulen",max_length=30)
-    password=models.CharField(default="****",max_length=30)
+    password= models.CharField(default="****",max_length=30)
+    Prefix_freeswitch=models.CharField(default="1",max_length=5)
     class Meta:
         ordering = ["name"]
     def __str__(self):

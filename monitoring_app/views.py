@@ -22,6 +22,7 @@ from .supervision import testpid as tp
 from .supervision import testfirewall as tf
 from .supervision import testdelay as td
 from .supervision import testservices as ts
+from .supervision import testfreeconnect as tcommu
 from .supervision import testroute as tr
 from .supervision import statusmachine as tg
 from IPython import embed
@@ -199,11 +200,14 @@ def cpu_rest(request):
     data = json.dumps({"cpu":cpu})
     return HttpResponse(data, content_type='application/json')
 def regphone_rest(request):
-    print "ffffffffffffffffffffffffff"
     phone = treg.get_regphone(machine_id)
     data = json.dumps({"phone":phone})
     return HttpResponse(data, content_type='application/json')
-	
+def freecommu_rest(request):
+    status=tcommu.get_freecommu(machine_id)
+    print status
+    data = json.dumps({"stat":status})
+    return HttpResponse(data, content_type='application/json')
 
 
 

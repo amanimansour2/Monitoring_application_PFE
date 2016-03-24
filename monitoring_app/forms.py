@@ -13,7 +13,7 @@ class MachineForm(forms.ModelForm):
 	
     class Meta:
         model = Machine
-        fields = ('name', 'address', 'username','password')
+        fields = ('name', 'address', 'username','password','Prefix_freeswitch')
 class CallForm(forms.ModelForm):
 	
     class Meta:

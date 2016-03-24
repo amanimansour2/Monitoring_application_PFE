@@ -85,7 +85,7 @@
                       <ul class="sub">
                           <li><a  href="{% url "general_conf" %}"> Général configuration </a></li>
 			             {% for machine in machine_detail %}
-                          <li><a href="{% url "freeswitch_detail" %}?machine_id={{ machine.id }}">{{ machine.name }}</a></li>
+                          <li><a href="{% url "freeswitch_detail" %}?machine_id={{ machine.id }}">{{ machine.name  }}</a></li>
 						  {% endfor %}
                       </ul>
                   </li>
