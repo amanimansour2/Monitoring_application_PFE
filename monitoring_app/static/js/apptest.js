@@ -18,6 +18,7 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 						 }).then(function(response) {
 								   $scope.phone= response.data.phone;
 			});  }
+	$scope.stat='No';
     $scope.getmachine3 = function() {
 			  $http({
 						method : "GET",
@@ -25,7 +26,18 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 						 }).then(function(response) {
 								   $scope.stat= response.data.stat;
 
-			});  }			
+			});  }
+	 $scope.confnumber='1000';
+	 $scope.statnumber='No';
+     $scope.getmachine4 = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/numberconfig/",
+						params:{"number" : $scope.confnumber},
+						 }).then(function(response) {
+								   $scope.statnumber= response.data.statnumber;
+
+			});  }				
 			
     $scope.firewall='status firewall';
 	$scope.route='default route';

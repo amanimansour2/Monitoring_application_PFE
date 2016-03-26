@@ -17,7 +17,8 @@ import requests
 import re
 import pexpect
 from rest_framework.urlpatterns import format_suffix_patterns
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers, serializers, viewsets  
+from .supervision import testconfcall as tnumconf
 from .supervision import testpid as tp
 from .supervision import testfirewall as tf
 from .supervision import testdelay as td
@@ -207,6 +208,11 @@ def freecommu_rest(request):
     status=tcommu.get_freecommu(machine_id)
     print status
     data = json.dumps({"stat":status})
+    return HttpResponse(data, content_type='application/json')
+def numberconfig_rest(request):
+    number =  request.GET.get('number')
+    status=tnumconf.get_confnumber(number,machine_id)
+    data = json.dumps({"statnumber":status})
     return HttpResponse(data, content_type='application/json')
 
 

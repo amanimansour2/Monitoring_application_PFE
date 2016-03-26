@@ -14,12 +14,12 @@ def get_pid(process_name,id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
-        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/pid.py", remotehost, "/home/amani")
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/pid.py", remotehost, "/home/%s" %(user))
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
         child.expect(pexpect.EOF)
-        s.sendline('python /home/amani/pid.py ' + process_name )   # run a command
+        s.sendline('python /home/%s/pid.py ' + process_name %(user))   # run a command
         s.prompt()             # match the prompt
         message = s.before          # print everything before the prompt.
         s.logout()

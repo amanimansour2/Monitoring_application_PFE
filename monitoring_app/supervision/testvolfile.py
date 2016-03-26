@@ -15,12 +15,12 @@ def get_volfile(id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
-        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/voluminousfile.py", remotehost, "/home/amani")
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/voluminousfile.py", remotehost, "/home/%s" %(user))
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
         child.expect(pexpect.EOF)
-        s.sendline("python /home/amani/voluminousfile.py")   # run a command
+        s.sendline("python /home/%s/voluminousfile.py" %(user))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
         print message		
