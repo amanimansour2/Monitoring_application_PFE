@@ -16,14 +16,15 @@ def get_firewall(id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
-        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/firewall_test.py", remotehost, "/root" )
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/firewall_test.py", remotehost, "/home/%s" %(user) )
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
         child.expect(pexpect.EOF)
         s.sendline('su -')
         s.sendline(password)
-        s.sendline("python  /root/firewall_test.py"  )   # run a command
+        s.sendline('cd /home/%s/' % (user))
+        s.sendline("python  /home/%s/firewall_test.py"  % (user) )   # run a command
         s.prompt()             # match the prompt
         message=s.before  
         print message 

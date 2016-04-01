@@ -14,20 +14,49 @@
 					         <button type="button" class="btn btn-round btn-info" ng-click="getmachine2()">Get details !!!</button>
                              <h6><b><input type="text" ng-model="phone" size="30"/></b></h6>
                   		</div>             
-						
+						</div>
+                    <div class="col-md-6 col-sm-4 box0">
 						<div class="box1">
 				             <h4><b>Make this freeSWITCH communicate with others : </b></h4>
 					         <button type="button" class="btn btn-round btn-info" ng-click="getmachine3()">YES !!!</button>
                              <h6><b><input type="text" ng-model="stat" size="10"/></b></h6>
 
 						</div>
-						
+						</div>
+                    <div class="col-md-6 col-sm-4 box0">
 					    <div class="box1">
-				             <h4><b>Configure a number: </b></h4>
-                             <h6><b>insert the number <input type="text" ng-model="confnumber" size="10"/></b></h6>
+				             <h4><b>Configure the test number : </b></h4>
+                             <h6><b>Insert the test number :<input type="text" ng-model="confnumber" size="10"/></b></h6>
+							 <h6><b>Select the codec :<select name="codec"  ng-model="codec">
+							 <option selected> PCMA
+							 <option >PCMU
+							 </select></b></h6>
+		                     <h6><b>Insert the file name :<input type="text" size="20"/></b></h6>
 							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine4()">YES !!!</button>
                              <h6><b> <input type="text" ng-model="statnumber" size="10"/></b></h6>
 						</div>
+						
+						<div class="box1">
+				             <h4><b>Remove the test number: </b></h4>
+                             <h6><b>Insert the test number <input type="text" ng-model="numberconf" size="10"/></b></h6>
+							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine5()">YES !!!</button>
+                             <h6><b> <input type="text" ng-model="delnumber" size="10"/></b></h6>
+						</div>
+						</div>
+					<div class="col-md-6 col-sm-4 box0">
+						<div class="box1">
+				             <h4><b>Configure a soft phone number: </b></h4>
+                             <h6><b>Insert the soft phone number <input type="text" ng-model="numbersoft" size="10"/></b></h6>
+							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine6()">YES !!!</button>
+                             <h6><b> <input type="text" ng-model="statnumbersoft" size="10"/></b></h6>
+						</div>
+						<div class="box1">
+				             <h4><b>Remove the soft phone number: </b></h4>
+                             <h6><b>Insert the soft phone number <input type="text" ng-model="numbersoftremove" size="10"/></b></h6>
+							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine7()">YES !!!</button>
+                             <h6><b> <input type="text" ng-model="delnumbersoft" size="10"/></b></h6>
+						</div>
+					</div>
                   	</div>
                     		 
 					</div>

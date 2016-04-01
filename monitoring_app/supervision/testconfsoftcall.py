@@ -5,7 +5,7 @@ from monitoring_app.models import Machine
 import getpass
 import sys
 import json
-def get_confnumber(number,codec,id1):
+def get_confsoftnumber(number,id1):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -14,7 +14,7 @@ def get_confnumber(number,codec,id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
-        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/confnumber.py", remotehost, "/home/%s" %(user))
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/confsoftnumber.py", remotehost, "/home/%s" %(user))
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
@@ -23,11 +23,11 @@ def get_confnumber(number,codec,id1):
         for machine in machines:
             if int(machine.id) == int(id1) :
                 adsrc=machine.address
-        ch=str(adsrc)+"="+number+"="+codec
+        ch=str(adsrc)+"="+number
         print ch 
         s.sendline('su -')
         s.sendline(password)
-        s.sendline("python /home/%s/confnumber.py  %s " % (user,ch))   # run a command
+        s.sendline("python /home/%s/confsoftnumber.py  %s " % (user,ch))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
         print message

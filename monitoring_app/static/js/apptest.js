@@ -11,6 +11,8 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 			$scope.status=response.data.status;
 			
 		});			}
+		
+		 $scope.phone='No numbers';
 	$scope.getmachine2 = function() {
 			  $http({
 						method : "GET",
@@ -29,16 +31,51 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 			});  }
 	 $scope.confnumber='1000';
 	 $scope.statnumber='No';
+	 $scope.codec='PCMA';
      $scope.getmachine4 = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/numberconfig/",
-						params:{"number" : $scope.confnumber},
+						params:{"number" : $scope.confnumber,"codec" : $scope.codec},
 						 }).then(function(response) {
 								   $scope.statnumber= response.data.statnumber;
 
-			});  }				
+			});  }	
 			
+     $scope.numberconf='1000';
+	 $scope.delnumber='No';
+     $scope.getmachine5 = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/numberdelete/",
+						params:{"numbertodelete" : $scope.numberconf},
+						 }).then(function(response) {
+								   $scope.delnumber= response.data.delnumber;
+
+			});  }				
+	 $scope.numbersoft='1500';
+	 $scope.statnumbersoft='No';
+     $scope.getmachine6 = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/numbersoftconfig/",
+						params:{"number" : $scope.numbersoft},
+						 }).then(function(response) {
+								   $scope.statnumbersoft= response.data.statnumber;
+
+			});  }	
+			
+     $scope.numbersoftremove='1500';
+	 $scope.delnumbersoft='No';
+     $scope.getmachine7 = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/numbersoftdelete/",
+						params:{"numbertodelete" : $scope.numbersoftremove},
+						 }).then(function(response) {
+								   $scope.delnumbersoft= response.data.delnumbersoft;
+
+			});  }				
     $scope.firewall='status firewall';
 	$scope.route='default route';
 	

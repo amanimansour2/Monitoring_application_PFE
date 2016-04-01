@@ -35,6 +35,7 @@ def get_freecommu(id1):
         s.sendline("python /home/%s/testcall.py  %s " % (user,ch))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
+        print message
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]

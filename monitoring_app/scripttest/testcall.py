@@ -70,7 +70,7 @@ while i < n :
                     if str(ext)=="Dial to "+l[i][0] :
 	       	        f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
        		        y=etree.XML('<condition field="destination_number"/>')
-           	        y.set('expression',"^\+"+l[i][1]+"(\d\d\d\d)$")
+           	        y.set('expression',"^\+"+l[i][1]+"(\d+)$")
                	        x=etree.XML('<action application="bridge"/>')
 	       	        x.set('data',"sofia/internal/$1@"+l[i][0])
 		        y.append(x)
@@ -103,7 +103,7 @@ while i < n :
          	    if str(ext)=="Calls go to "+adsrc :
 		        f = open('/usr/local/freeswitch/conf/dialplan/public.xml', 'w')
 		        y=etree.XML('<condition field="destination_number"/>')
-		        y.set('expression',"^\+"+l[i][1]+"(\d\d\d\d)$")
+		        y.set('expression',"^\+"+l[i][1]+"(\d+)$")
 		        x=etree.XML('<action application="transfer"/>')
 		        x.set('data',"$1 XML default")
 		        y.append(x)

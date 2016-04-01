@@ -1,12 +1,11 @@
 #!/usr/bin/python
-from monitoring_app.models import Machine
 import pexpect
 from pexpect import ExceptionPexpect, TIMEOUT, EOF, pxssh
+from monitoring_app.models import Machine
 import getpass
-import json
-from IPython import embed 
 import sys
-def get_regphone(id1):
+import json
+def get_delnumber(number,id1):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -15,25 +14,32 @@ def get_regphone(id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
-        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/regestredphone.py", remotehost, "/home/%s" %(user))
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/removenumber.py", remotehost, "/home/%s" %(user))
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
         child.expect(pexpect.EOF)
-        s.sendline("python /home/%s/regestredphone.py" %(user))   # run a command
+        machines =  Machine.objects.all()
+        for machine in machines:
+            if int(machine.id) == int(id1) :
+                adsrc=machine.address
+        ch=str(adsrc)+"="+number
+        s.sendline('su -')
+        s.sendline(password)
+        s.sendline("python /home/%s/removenumber.py  %s " % (user,ch))   # run a command
         s.prompt()             # match the prompt
-        message=s.before  
-        print message  
+        message=s.before 
+        print message
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]
         message= message.replace("'", "\"")
+        
         messages = json.loads(message)
         s.sendline ('exit')
         s.logout()
-        return messages['phone']
+        return messages['delnumber']      
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)
         return 0
-

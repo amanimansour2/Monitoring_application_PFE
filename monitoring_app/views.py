@@ -19,6 +19,9 @@ import pexpect
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import routers, serializers, viewsets  
 from .supervision import testconfcall as tnumconf
+from .supervision import testdeletnumber as tnumdel
+from .supervision import testconfsoftcall as tnumsoftconf
+from .supervision import testdeletsoftnumber as tnumsoftdel
 from .supervision import testpid as tp
 from .supervision import testfirewall as tf
 from .supervision import testdelay as td
@@ -211,10 +214,22 @@ def freecommu_rest(request):
     return HttpResponse(data, content_type='application/json')
 def numberconfig_rest(request):
     number =  request.GET.get('number')
-    status=tnumconf.get_confnumber(number,machine_id)
+    codec =  request.GET.get('codec')
+    status=tnumconf.get_confnumber(number,codec,machine_id)
     data = json.dumps({"statnumber":status})
     return HttpResponse(data, content_type='application/json')
-
-
-
-
+def numberdelete_rest(request):
+    number1 =  request.GET.get('numbertodelete')
+    status1=tnumdel.get_delnumber(number1,machine_id)
+    data = json.dumps({"delnumber":status1})
+    return HttpResponse(data, content_type='application/json')
+def numbersoftconfig_rest(request):
+    number =  request.GET.get('number')
+    status=tnumsoftconf.get_confsoftnumber(number,machine_id)
+    data = json.dumps({"statnumber":status})
+    return HttpResponse(data, content_type='application/json')
+def numbersoftdelete_rest(request):
+    number1 =  request.GET.get('numbertodelete')
+    status1=tnumsoftdel.get_delsoftnumber(number1,machine_id)
+    data = json.dumps({"delnumber":status1})
+    return HttpResponse(data, content_type='application/json')
