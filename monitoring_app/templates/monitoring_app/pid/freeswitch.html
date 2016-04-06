@@ -28,10 +28,8 @@
 				             <h4><b>Configure the test number : </b></h4>
                              <h6><b>Insert the test number :<input type="text" ng-model="confnumber" size="10"/></b></h6>
 							 <h6><b>Select the codec :<select name="codec"  ng-model="codec">
-							 <option selected> PCMA
-							 <option >PCMU
-							 </select></b></h6>
-		                     <h6><b>Insert the file name :<input type="text" size="20"/></b></h6>
+							 <option selected>PCMA<option >PCMU<option >G722<option >G726<option >Opus</select></b></h6>
+                              <h6><b><input type="file" data-file="param.file" id="file"/></b></h6>
 							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine4()">YES !!!</button>
                              <h6><b> <input type="text" ng-model="statnumber" size="10"/></b></h6>
 						</div>
@@ -55,6 +53,16 @@
                              <h6><b>Insert the soft phone number <input type="text" ng-model="numbersoftremove" size="10"/></b></h6>
 							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine7()">YES !!!</button>
                              <h6><b> <input type="text" ng-model="delnumbersoft" size="10"/></b></h6>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-4 box0">
+						<div class="box1">
+				             <h4><b>Make a call: </b></h4>
+			                 <h6><b>Insert your pcap file name is :<input type="text" ng-model="pcapfile" size="50"/></b></h6>
+							 <button type="button" class="btn btn-round btn-info" ng-click="start()">Begin</button>
+							 <h6><b>your wav file path is :<input type="text" ng-model="wavname" size="50"/></b></h6>
+				             <button type="button" class="btn btn-round btn-info" ng-click="Getwav()">Get my speech</button>
+                             <h6><b> <input type="text" ng-model="mywav" size="10"/></b></h6>
 						</div>
 					</div>
                   	</div>

@@ -26,8 +26,10 @@ numero=ch[point+1:len(ch)]
 tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
 for extension in tree.xpath("/include/context/extension"):
     if str(extension.get('name'))=="Local_Extension":
-        c=extension.find('condition').get('expression')            
-        if (numero in c)==False :             
+        c=extension.find('condition').get('expression')      
+        n1="|"+numero+"|"
+        n2="|"+numero+")"		
+        if ((n1 in c)==False)and ((n1 in c)==False) :  		           
             f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
             r=c[:len(c)-2]+"|"+str(numero)+")$"
             extension.find('condition').set('expression',r)
@@ -39,7 +41,9 @@ tree = etree.parse("/usr/local/freeswitch/conf/dialplan/public.xml")
 for extension in tree.xpath("/include/context/extension"):
     if str(extension.get('name'))=="public_extensions":
         c=extension.find('condition').get('expression')            
-        if (numero in c)==False :             
+        n1="|"+numero+"|"
+        n2="|"+numero+")"		
+        if ((n1 in c)==False)and ((n1 in c)==False) :               
             f = open('/usr/local/freeswitch/conf/dialplan/public.xml', 'w')
             r=c[:len(c)-2]+"|"+str(numero)+")$"
             extension.find('condition').set('expression',r)

@@ -1,6 +1,22 @@
 (function(){
 var app= angular.module('monitoring', []);
-app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http) {
+app.directive('file', function(){
+    return {
+        scope: {
+            file: '='
+        },
+        link: function(scope, el, attrs){
+            el.bind('change', function(event){
+                var files = event.target.files;
+                var file = files[0];
+				var filePath=$('#file').val();
+                scope.file = file ? file.name : undefined;
+                scope.$apply();
+            });
+        }
+    };
+});
+app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http) {
     $scope.status='click sur Get ';
 	$scope.statusge= function($id) {
         $http({
@@ -29,16 +45,32 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
 								   $scope.stat= response.data.stat;
 
 			});  }
+			
+	$scope.wavname ='Click in begin to get the .wav file path';
+	$scope.pcapfile='insert a name to your pcap file';
+	$scope.start = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/makecall/",
+						params:{"namepcap" : $scope.pcapfile},
+						 }).then(function(response) {
+							 		 $scope.wavname= response.data.wavname;
+        
+
+			});  }	
 	 $scope.confnumber='1000';
 	 $scope.statnumber='No';
 	 $scope.codec='PCMA';
+	 $scope.param = {};
+	 
      $scope.getmachine4 = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/numberconfig/",
-						params:{"number" : $scope.confnumber,"codec" : $scope.codec},
+						params:{"number" : $scope.confnumber,"codec" : $scope.codec,"file":$scope.param["file"]},
 						 }).then(function(response) {
-								   $scope.statnumber= response.data.statnumber;
+							 		 $scope.statnumber= response.data.statnumber;
+        
 
 			});  }	
 			
@@ -158,6 +190,7 @@ app.controller('monitoringcontroller', ['$scope','$http', function($scope,$http)
                         });}
     
             }]);
+
 })();
 
 

@@ -5,7 +5,7 @@ from monitoring_app.models import Machine
 import getpass
 import sys
 import json
-def get_confnumber(number,codec,id1):
+def get_confnumber(number,codec,file,id1):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -23,7 +23,8 @@ def get_confnumber(number,codec,id1):
         for machine in machines:
             if int(machine.id) == int(id1) :
                 adsrc=machine.address
-        ch=str(adsrc)+"="+number+"="+codec
+        
+        ch=str(adsrc)+"="+number+"="+codec+"="+file
         print ch 
         s.sendline('su -')
         s.sendline(password)

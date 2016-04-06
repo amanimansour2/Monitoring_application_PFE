@@ -23,6 +23,7 @@ from .supervision import testdeletnumber as tnumdel
 from .supervision import testconfsoftcall as tnumsoftconf
 from .supervision import testdeletsoftnumber as tnumsoftdel
 from .supervision import testpid as tp
+from .supervision import testspeech as tcall
 from .supervision import testfirewall as tf
 from .supervision import testdelay as td
 from .supervision import testservices as ts
@@ -209,13 +210,18 @@ def regphone_rest(request):
     return HttpResponse(data, content_type='application/json')
 def freecommu_rest(request):
     status=tcommu.get_freecommu(machine_id)
-    print status
     data = json.dumps({"stat":status})
+    return HttpResponse(data, content_type='application/json')
+def begincall_rest(request):
+    namepcap =  request.GET.get('namepcap')
+    status=tcall.get_begincall(namepcap,machine_id)
+    data = json.dumps({"wavname":status})
     return HttpResponse(data, content_type='application/json')
 def numberconfig_rest(request):
     number =  request.GET.get('number')
     codec =  request.GET.get('codec')
-    status=tnumconf.get_confnumber(number,codec,machine_id)
+    file =  request.GET.get('file')
+    status=tnumconf.get_confnumber(number,codec,file,machine_id)
     data = json.dumps({"statnumber":status})
     return HttpResponse(data, content_type='application/json')
 def numberdelete_rest(request):
