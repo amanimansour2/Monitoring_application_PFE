@@ -5,7 +5,7 @@ from monitoring_app.models import Machine
 import getpass
 import sys
 import json
-def get_confsoftnumber(number,scenario,timerecord,msgrecord,id1):
+def get_confcall(numsrc,numdest,scenarioinvite,id1):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -14,7 +14,7 @@ def get_confsoftnumber(number,scenario,timerecord,msgrecord,id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
-        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/confsoftnumber.py", remotehost, "/home/%s" %(user))
+        COMMAND="scp -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/confcall.py", remotehost, "/home/%s" %(user))
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
@@ -25,8 +25,7 @@ def get_confsoftnumber(number,scenario,timerecord,msgrecord,id1):
                 adsrc=machine.address
         s.sendline('su -')
         s.sendline(password)
-		
-        s.sendline("python /home/%s/confsoftnumber.py  %s %s %s %s %s  " % (user,adsrc,number,scenario,timerecord,msgrecord))   # run a command
+        s.sendline("python /home/%s/confcall.py  %s %s %s %s " % (user,adsrc,numsrc,numdest,scenarioinvite))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
         print message
@@ -34,7 +33,7 @@ def get_confsoftnumber(number,scenario,timerecord,msgrecord,id1):
         j=message.find('}')+1
         message=message[i:j]
         message= message.replace("'", "\"")
-
+        
         messages = json.loads(message)
         s.sendline ('exit')
         s.logout()

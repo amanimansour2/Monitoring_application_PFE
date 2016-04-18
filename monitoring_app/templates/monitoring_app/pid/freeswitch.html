@@ -7,22 +7,22 @@
 	 <div ng-controller="monitoringcontroller">
 
 				    <div class=" main-chart">
-			  
-                    <div class="col-md-6 col-sm-4 box0">
+			             <div class="col-md-6 col-sm-4 box0">
                   		<div class="box1">
-				             <h4><b>Registered phones : </b></h4>
-					         <button type="button" class="btn btn-round btn-info" ng-click="getmachine2()">Get details !!!</button>
-                             <h6><b><input type="text" ng-model="phone" size="30"/></b></h6>
+				             <h4><b>Initiate your FreeSWITCH : 
+					         <button type="button" class="btn btn-round btn-info" ng-click="initialize()">Initiate</button></b></h4>
+							 <h6><b><input type="text" ng-model="initialisation" size="5"/></b></h6>
+                  		
+				             <h4><b>Communicate your freeSWITCH with others: 
+					         <button type="button" class="btn btn-round btn-info" ng-click="getmachine3()">YES</button></b></h4>
+                             <h6><b><input type="text" ng-model="stat" size="5"/></b></h6>
+
+				             <h4><b>Registered phones : 
+					         <button type="button" class="btn btn-round btn-info" ng-click="getmachine2()">Get Numbers</button></b></h4>
+							 <h6><b><input type="text" ng-model="phone" size="30"/></b></h6>
                   		</div>             
 						</div>
-                    <div class="col-md-6 col-sm-4 box0">
-						<div class="box1">
-				             <h4><b>Make this freeSWITCH communicate with others : </b></h4>
-					         <button type="button" class="btn btn-round btn-info" ng-click="getmachine3()">YES !!!</button>
-                             <h6><b><input type="text" ng-model="stat" size="10"/></b></h6>
-
-						</div>
-						</div>
+                    
                     <div class="col-md-6 col-sm-4 box0">
 					    <div class="box1">
 				             <h4><b>Configure the test number : </b></h4>
@@ -33,20 +33,23 @@
 							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine4()">YES !!!</button>
                              <h6><b> <input type="text" ng-model="statnumber" size="10"/></b></h6>
 						</div>
+					   <div class="box1">
+				             <h4><b>Configure a soft phone number: </b></h4>
+                             <h6><b>Insert the soft phone number <input type="text" ng-model="numbersoft" size="10"/></b></h6>
+					         <h6><b>Select the scenario :<select name="scenario"  ng-model="scenario">
+			                 <option selected>None<option >Busy_Here<option >Forbidden<option >Service_Unavailable</select></b></h6>
+							<!-- <h6><b>Insert the message: <input type="text" ng-model="msgrecord" size="8"/>Time : <input type="text" ng-model="timerecord" size="8"/></b></h6>
+							--> <button type="button" class="btn btn-round btn-info" ng-click="getmachine6()">YES !!!</button>
+                             <h6><b> <input type="text" ng-model="statnumbersoft" size="10"/></b></h6>							
+						</div>
 						
-						<div class="box1">
+						</div>
+					<div class="col-md-6 col-sm-4 box0">
+                         <div class="box1">
 				             <h4><b>Remove the test number: </b></h4>
                              <h6><b>Insert the test number <input type="text" ng-model="numberconf" size="10"/></b></h6>
 							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine5()">YES !!!</button>
                              <h6><b> <input type="text" ng-model="delnumber" size="10"/></b></h6>
-						</div>
-						</div>
-					<div class="col-md-6 col-sm-4 box0">
-						<div class="box1">
-				             <h4><b>Configure a soft phone number: </b></h4>
-                             <h6><b>Insert the soft phone number <input type="text" ng-model="numbersoft" size="10"/></b></h6>
-							 <button type="button" class="btn btn-round btn-info" ng-click="getmachine6()">YES !!!</button>
-                             <h6><b> <input type="text" ng-model="statnumbersoft" size="10"/></b></h6>
 						</div>
 						<div class="box1">
 				             <h4><b>Remove the soft phone number: </b></h4>
@@ -58,15 +61,39 @@
 					<div class="col-md-6 col-sm-4 box0">
 						<div class="box1">
 				             <h4><b>Make a call: </b></h4>
-			                 <h6><b>Insert your pcap file name is :<input type="text" ng-model="pcapfile" size="50"/></b></h6>
+			                 <h6><b>Insert the name of your pcap file:<input type="text" ng-model="pcapfile" size="10"/></b></h6>
+	                         <h6><b>Insert the capture duration (second):<input type="text" ng-model="timecapture" size="5"/></b></h6>
 							 <button type="button" class="btn btn-round btn-info" ng-click="start()">Begin</button>
-							 <h6><b>your wav file path is :<input type="text" ng-model="wavname" size="50"/></b></h6>
-				             <button type="button" class="btn btn-round btn-info" ng-click="Getwav()">Get my speech</button>
-                             <h6><b> <input type="text" ng-model="mywav" size="10"/></b></h6>
+							 <h6><b>your will find your .wav file in :<input type="text" ng-model="wavname" size="40"/></b></h6>
+				             
 						</div>
+					
+						<div class="box1">
+				             <h4><b>Test a call: </b></h4>
+			                 <h6><b>Test number(caller):<input type="text" ng-model="numsrc" size="8"/></b></h6>
+							 <h6><b>soft phone number (calle):<input type="text" ng-model="numdest" size="8"/></b></h6>
+                             <h6><b>Select the scenario :<select name="scenario"  ng-model="scenarioinvite">
+			                 <option selected>INVITE_with_name<option >Anonymous_INVITE</select></b></h6>						
+							 <button type="button" class="btn btn-round btn-info" ng-click="call()">Call</button>
+							 <h6><b><input type="text" ng-model="statcall" size="10"/></b></h6>
+				             
+						</div>
+						
+						<div class="box1">
+				             <h4><b>Test scenario: </b></h4>
+			                 <h6><b>Test number(caller):<input type="text" ng-model="numsrc" size="8"/></b></h6>
+							 <h6><b>soft phone number (calle):<input type="text" ng-model="numdest" size="8"/></b></h6>
+                             <h6><b>Select the scenario :</b></h6>
+                             <label><input type="checkbox" id="cbox1" value="premiere_checkbox"> INVITE without SDP</label><br>
+                             <input type="checkbox" id="cbox2" value="deuxieme_checkbox"> Send DTMF</label>
+							 <h6><b><input type="text" ng-model="statcall" size="10"/></b></h6>
+				             
+						</div>
+						
+						
 					</div>
-                  	</div>
-                    		 
+					
+ 		 
 					</div>
 				                           
 				</div>

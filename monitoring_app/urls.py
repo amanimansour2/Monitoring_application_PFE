@@ -51,11 +51,12 @@ urlpatterns += patterns('',
     url(r'^disk/$',views.diskusage_rest, name='diskusage_rest'),
     url(r'^voluminousfile/$',views.volfile_rest, name='volfile_rest'),
     url(r'^cpu/$',views.cpu_rest, name='cpu_rest'),
+    url(r'^initialize/$',views.initialize_rest, name='initialize_rest'),
     url(r'^pid/machine/$',views.detail, name='machine_detail'),
     url(r'^pid/FreeSWITCH/$',views.freedetail, name='freeswitch_detail'),
     url(r'^pid/$',views.status, name='status'),
     url(r'^pid/add_machine/$',views.add_machine, name='add_machine'),
     url(r'^pid/general_conf/$',views.general_conf, name='general_conf'),
-
+    url(r'^callconfig/$',views.call_conf, name='call_conf'),
 )
     

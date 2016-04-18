@@ -30,6 +30,8 @@ from .supervision import testservices as ts
 from .supervision import testfreeconnect as tcommu
 from .supervision import testroute as tr
 from .supervision import statusmachine as tg
+from .supervision import initialize as tinit
+from .supervision import testcallwithscenarioinvite as tconfig
 from IPython import embed
 from .supervision import testdisk as tdis
 from .supervision import testvolfile as tv
@@ -214,7 +216,8 @@ def freecommu_rest(request):
     return HttpResponse(data, content_type='application/json')
 def begincall_rest(request):
     namepcap =  request.GET.get('namepcap')
-    status=tcall.get_begincall(namepcap,machine_id)
+    time1 =  request.GET.get('time1')
+    status=tcall.get_begincall(namepcap,time1,machine_id)
     data = json.dumps({"wavname":status})
     return HttpResponse(data, content_type='application/json')
 def numberconfig_rest(request):
@@ -231,11 +234,26 @@ def numberdelete_rest(request):
     return HttpResponse(data, content_type='application/json')
 def numbersoftconfig_rest(request):
     number =  request.GET.get('number')
-    status=tnumsoftconf.get_confsoftnumber(number,machine_id)
+    scenario =  request.GET.get('scenario')
+    timerecord =  request.GET.get('timerecord')
+    msgrecord =  request.GET.get('msgrecord')
+    status=tnumsoftconf.get_confsoftnumber(number,scenario,timerecord,msgrecord,machine_id)
     data = json.dumps({"statnumber":status})
+    return HttpResponse(data, content_type='application/json')
+def call_conf(request):
+    numsrc =  request.GET.get('numsrc')
+    numdest =  request.GET.get('numdest')
+    scenarioinvite =  request.GET.get('scenarioinvite')
+    status=tconfig.get_confcall(numsrc,numdest,scenarioinvite,machine_id)
+    data = json.dumps({"statcall":status})
     return HttpResponse(data, content_type='application/json')
 def numbersoftdelete_rest(request):
     number1 =  request.GET.get('numbertodelete')
     status1=tnumsoftdel.get_delsoftnumber(number1,machine_id)
     data = json.dumps({"delnumber":status1})
     return HttpResponse(data, content_type='application/json')
+def initialize_rest(request):
+    status1=tinit.get_initialize(machine_id)
+    data = json.dumps({"initialisation":status1})
+    return HttpResponse(data, content_type='application/json')
+

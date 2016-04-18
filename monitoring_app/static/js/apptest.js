@@ -28,6 +28,16 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 			
 		});			}
 		
+    $scope.initialisation='initialisation';
+	$scope.initialize = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/initialize/",
+						 }).then(function(response) {
+								   $scope.initialisation= response.data.initialisation;
+			});  }	
+		
+		
 		 $scope.phone='No numbers';
 	$scope.getmachine2 = function() {
 			  $http({
@@ -46,23 +56,30 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 
 			});  }
 			
-	$scope.wavname ='Click in begin to get the .wav file path';
-	$scope.pcapfile='insert a name to your pcap file';
+	$scope.wavname ='/your/path/to/your/wav ...';
+	$scope.pcapfile='file.pcap';
+	$scope.timecapture='20';
 	$scope.start = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/makecall/",
-						params:{"namepcap" : $scope.pcapfile},
+						params:{"namepcap" : $scope.pcapfile,"time1":$scope.timecapture},
 						 }).then(function(response) {
 							 		 $scope.wavname= response.data.wavname;
         
 
-			});  }	
+			});  }
+	resource=$scope.wavname;
+     $scope.download = function(){
+          $http.get('/home/amani/projet/parole.pcap.0xFC69CA7C.wav '). 
+       then(function(response) { 
+          $scope.url=response; 
+        });
+     }
 	 $scope.confnumber='1000';
 	 $scope.statnumber='No';
 	 $scope.codec='PCMA';
-	 $scope.param = {};
-	 
+	 $scope.param = {};	 
      $scope.getmachine4 = function() {
 			  $http({
 						method : "GET",
@@ -86,17 +103,32 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 
 			});  }				
 	 $scope.numbersoft='1500';
+	 $scope.scenario='None';
+	 $scope.msgrecord='No';
+	 $scope.timerecord='0';
 	 $scope.statnumbersoft='No';
      $scope.getmachine6 = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/numbersoftconfig/",
-						params:{"number" : $scope.numbersoft},
+						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord},
 						 }).then(function(response) {
 								   $scope.statnumbersoft= response.data.statnumber;
 
 			});  }	
-			
+	 $scope.numsrc='caller';
+	 $scope.numdest='callee';
+	 $scope.scenarioinvite='INVITE_with_name';
+	 $scope.statcall='No';
+     $scope.call= function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/callconfig/",
+						params:{"numsrc" : $scope.numsrc,"numdest" : $scope.numdest,"scenarioinvite":$scope.scenarioinvite,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord},
+						 }).then(function(response) {
+								   $scope.statcall= response.data.statcall;
+
+			});  }		
      $scope.numbersoftremove='1500';
 	 $scope.delnumbersoft='No';
      $scope.getmachine7 = function() {

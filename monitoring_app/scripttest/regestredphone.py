@@ -1,5 +1,6 @@
 import ESL
 import sys
+import time 
 address="127.0.0.1"
 port="8021"
 auth="ClueCon"
@@ -8,10 +9,11 @@ d={}
 d["phone"]="no numbers"
 con =ESL.ESLconnection(address,port,auth)
 con=ESL.ESLconnection("127.0.0.1","8021","ClueCon")
-b=con.api('sofia','profile external restart')
-print b.getBody()
+con.api('sofia','profile external restart')
+time.sleep(2)
 if con.connected():
-    c=con.execute("reloadxml")
+    con.execute("reloadxml")
+time.sleep(2)
 if con.connected():
     e = con.api(command)
     ch=e.getBody()

@@ -14,17 +14,17 @@ from lxml.builder import E
 import sys 
 import json
 import ast
-
+import time 
 d={}
 ch=sys.argv[1]
 point=ch.find("=")
 adsrc=ch[:point]
 numero=ch[point+1:len(ch)]
 con=ESL.ESLconnection("127.0.0.1","8021","ClueCon")
-b=con.api("sofia","profile external restart")
-print b.getBody()
-a=con.api("sofia","profile external killgw gateway_to_"+numero+".xml")
-print a.getBody()
+con.api("sofia","profile external restart")
+time.sleep(3)
+con.api("sofia","profile external killgw gateway_to_%s.xml" %(numero))
+time.sleep(2)
 os.remove("/usr/local/freeswitch/conf/sip_profiles/external/"+"gateway_to_"+numero+".xml")
 os.remove("/usr/local/freeswitch/conf/directory/default/"+numero+".xml")
 tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")

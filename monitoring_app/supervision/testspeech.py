@@ -9,7 +9,7 @@ import time
 import subprocess
 from monitoring_app.models import Machine
 import time
-def get_begincall(namepcap,id1):
+def get_begincall(namepcap,time1,id1):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -26,18 +26,17 @@ def get_begincall(namepcap,id1):
         s.sendline('su -')
         s.sendline(password)
         s.sendline('cd /home/%s' %(user))
-        s.sendline('python /home/%s/recup_client_call.py %s ' %(user,namepcap))   # run a command
-        time.sleep(20)
+        s.sendline('python /home/%s/recup_client_call.py %s %s %s' %(user,namepcap,time1,user))   # run a command
+        time.sleep(float(time1))
         s.sendline('chmod +777 /home/%s/%s ' %(user,namepcap))   # run a command   
-        COMMAND="scp  -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/%s", remotehost, "/home/%s" %(user))
+        COMMAND="scp  -oPubKeyAuthentication=no %s:%s %s " % ( remotehost,"/home/%s/%s"%(user,namepcap),"/home/amani/")
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
         child.sendline(password)
         child.expect(pexpect.EOF)
         s.prompt()  
-        		# match the prompt
         os.chdir("/home/amani/projet/PFE/monitoring_app/scripttest/")
-        p = sub.Popen(('python', '/home/amani/projet/PFE/monitoring_app/scripttest/speech.py','/home/%s/%s' %(user,namepcap)),stdout=sub.PIPE) 
+        p = sub.Popen(('python', '/home/amani/projet/PFE/monitoring_app/scripttest/speech.py','/home/amani/%s' %(namepcap)),stdout=sub.PIPE) 
         message=p.stdout.read()
         print message
         i=message.find('{')
