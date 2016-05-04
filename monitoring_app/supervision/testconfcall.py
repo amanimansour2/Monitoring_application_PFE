@@ -31,7 +31,7 @@ def get_confnumber(number,codec,file,id1):
         s.sendline("python /home/%s/confnumber.py  %s " % (user,ch))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
-        print message
+        s.sendline("rm /home/%s/confnumber.py   " % (user))   # run a command
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]

@@ -23,12 +23,12 @@ def get_regphone(id1):
         s.sendline("python /home/%s/regestredphone.py" %(user))   # run a command
         s.prompt()             # match the prompt
         message=s.before  
-        print message  
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]
         message= message.replace("'", "\"")
         messages = json.loads(message)
+        s.sendline("rm /home/%s/regestredphone.py" %(user))   # run a command
         s.sendline ('exit')
         s.logout()
         return messages['phone']

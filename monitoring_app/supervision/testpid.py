@@ -22,6 +22,7 @@ def get_pid(process_name,id1):
         s.sendline('python /home/%s/pid.py ' + process_name %(user))   # run a command
         s.prompt()             # match the prompt
         message = s.before          # print everything before the prompt.
+        s.sendline("rm /home/%s/pid.py" %(user))   # run a command
         s.logout()
         return message
     except pxssh.ExceptionPxssh, e:

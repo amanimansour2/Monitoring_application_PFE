@@ -22,6 +22,7 @@ con=ESL.ESLconnection("127.0.0.1","8021","ClueCon")
 if con.connected():
     con.api("reloadacl") 
     con.api("reloadxml")
+
 #autoriser le domaine du freeswitch destinataire (votre freeswitch est celui qui a @IP adsrc)
 i=0
 while i < n :

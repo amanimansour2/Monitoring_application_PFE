@@ -78,7 +78,7 @@ a, a:hover, a:focus {
 }
 
 .bg-theme02 {
-	background-color: #ac92ec;
+	background-color: #68dff0;
 }
 
 .bg-theme03 {
@@ -107,8 +107,8 @@ a, a:hover, a:focus {
 
 .btn-theme02 {
   color: #fff;
-  background-color: #ac92ec;
-  border-color: #967adc;
+  background-color: #68dff0;
+  border-color: #68dff0;
   
   position:relative;
     left: 100px;
@@ -160,7 +160,7 @@ a, a:hover, a:focus {
 }
 
 .btn-clear-g:hover {
-	color: white;
+	color: #48bcb4;
 }
 
 hr {
@@ -399,7 +399,7 @@ ul.sidebar-menu li a.active i {
 
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
-    margin-left: 210px;
+    margin-left: 110px;
 }
 
 .header, .footer {
@@ -842,6 +842,8 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 	text-align: center;
 	color: black;
 	border-bottom: 1px solid #989898;
+	padding: 10px;
+	margin-left:0px;
 }
 
 .box1 span {
@@ -870,6 +872,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .box0:hover {
 	background: #ffffff;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+	
 }
 
 /* MAIN CHART CONFIGURATION */
@@ -1504,6 +1507,14 @@ PANELS CONFIGURATIONS
     -o-background-size: cover;
     background-size: cover;
 }
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
 #profile-01 h3 {
 	color: white;
 	padding-top: 50px;
@@ -2118,7 +2129,7 @@ label {
     margin: 0;
     padding: 0;
     width: 100%;
-    display: inline-flex;
+    display: inline-block;
 }
 
 .panel-footer.revenue-foot ul li {
@@ -2228,7 +2239,7 @@ label {
     background: #68dff0;
     color: #fff;
     padding: 10px 0;
-	
+
 }
 
 

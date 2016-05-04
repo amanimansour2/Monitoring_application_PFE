@@ -1100,7 +1100,16 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 10px;
+  margin: 0 0 0px;
+  line-height: 75%
+
+
+}
+p span.gauche {
+  float: left;
+}
+p span.droite {
+  float: 50;
 }
 .lead {
   margin-bottom: 20px;
@@ -1370,7 +1379,7 @@ pre {
   padding: 9.5px;
   margin: 0 0 10px;
   font-size: 13px;
-  line-height: 1.42857143;
+  line-height: 1px;
   color: #333;
   word-break: break-all;
   word-wrap: break-word;
@@ -2309,10 +2318,12 @@ legend {
   border-bottom: 1px solid #e5e5e5;
 }
 label {
-  display: inline-block;
+  display: block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  border-bottom:1px;
+  background: transparent;
+  border-color: #48bcb4;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -2327,7 +2338,6 @@ input[type="checkbox"] {
 }
 input[type="file"] {
   display: block;
-  margin-left: 100px;
 }
 input[type="range"] {
   display: block;
@@ -4450,6 +4460,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
+  
 }
 a.label:hover,
 a.label:focus {

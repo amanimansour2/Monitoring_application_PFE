@@ -9,7 +9,7 @@ import time
 import subprocess
 from monitoring_app.models import Machine
 import time
-def get_begincall(namepcap,time1,id1):
+def get_begincall(time1,id1):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -18,6 +18,7 @@ def get_begincall(namepcap,time1,id1):
         s = pxssh.pxssh()
         s.login (address,user, password)
         remotehost=password+"@"+address
+        namepcap="speech.pcap"
         COMMAND="scp  -oPubKeyAuthentication=no %s %s:%s " % ("/home/amani/projet/PFE/monitoring_app/scripttest/recup_client_call.py", remotehost, "/home/%s" %(user))
         child = pexpect.spawn(COMMAND)
         child.expect(remotehost+"'s password:")
@@ -38,12 +39,11 @@ def get_begincall(namepcap,time1,id1):
         os.chdir("/home/amani/projet/PFE/monitoring_app/scripttest/")
         p = sub.Popen(('python', '/home/amani/projet/PFE/monitoring_app/scripttest/speech.py','/home/amani/%s' %(namepcap)),stdout=sub.PIPE) 
         message=p.stdout.read()
-        print message
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]
         message= message.replace("'", "\"")
-        
+        s.sendline("rm /home/%s/recup_client_call.py" %(user))
         messages = json.loads(message)
         s.sendline ('exit')
         s.logout()

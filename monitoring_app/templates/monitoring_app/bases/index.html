@@ -77,16 +77,21 @@
                           <span>Setting</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{% url "add_machine" %}"> Add machine</a></li>
+                          <li><a href="{% url "add_machine" %}""> Add machine</a></li>
                       </ul>
-                  </li>
+					  <ul class="sub">
+                          <li><a  href="{% url "deletemachine" %}""> Delete machine</a></li>
+                      </ul>
+					  <ul class="sub">
+                          <li><a  href="{% url "editmachine" %}""> Edit machine</a></li>
+                      </ul>					  
+                      </li>
 				  <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
                           <span>FreeSWITCH</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{% url "general_conf" %}"> Général configuration </a></li>
 			             {% for machine in machine_detail %}
                           <li><a href="{% url "freeswitch_detail" %}?machine_id={{ machine.id }}">{{ machine.name  }}</a></li>
 						  {% endfor %}
@@ -105,9 +110,8 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-
               <div class="row">
-                  <div class="col-lg-14 main-chart" margin-top="20px">
+                  <div class="main-chart" margin-top="20px">
                   {% block content %} {% endblock  %}
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
                   
@@ -146,6 +150,28 @@
 	
 	
   
+    <script type="text/javascript">
+	
+    function selection(id_option,valeur, id_a_afficher) {
 
+    $(function (){
+         var choix = document.getElementById(id_option).value;
+            if(choix==valeur) { 
+			document.getElementById(id_a_afficher).style="display:block";
+            }
+			else
+			{
+	       document.getElementById(id_a_afficher).style="display:none";
+			}
+   
+        
+    });	
+}
+
+function CopyMe(oFileInput, sTargetID) {
+    var arrTemp = oFileInput.value.split('\\');
+    document.getElementById(sTargetID).value = arrTemp[arrTemp.length - 1];
+}
+</script>
   </body>
 </html>

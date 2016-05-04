@@ -6,56 +6,56 @@
            <section class="wrapper">
 	 <div ng-controller="monitoringcontroller">
 	 				<div class=" main-chart">
-				    
-					<button type="button" class="btn btn-round btn-info" ng-click="getmachine1()">Get details !!!</button>
-                    <h2>
+				    <p><h2><b>Check details of your machine : 					  
+					<button type="button" class="btn btn-clear-g" ng-click="getmachine1()">Get details !!!</button></b></h2>	</p>
+       
 							   </div>	                            
 				<div class=" main-chart">
 			   
-				   <div class="col-md-6 col-sm-4 box0">
+                    <div class="col-md-6 col-sm-4 box0">
+                  		<div class="box1">
+				             <p><h4><b>firewall contains rules :
+                             <input type="text" ng-model="firewall" size="12"/></b></h4></p>
+                  		</div>
+                  	</div>
+                    		 
+					<div class="col-md-6 col-sm-4 box0">
+                 		<div class="box1">     
+							<p><h4><b>There is a default route :
+							<input type="text"size="14" ng-model="route"/></b></h4></p>
+						</div>
+                  	</div>
+					<div class="col-md-6 col-sm-4 box0">
+                  		<div class="box1">
+							<p><h4><b>Delay in packet send :
+							  <input type="text" size="8"ng-model="delay"/></b></h4></p>
+                  		</div>
+                  	</div> 
+					<div class="col-md-6 col-sm-4 box0">
+						<div class="box1">
+							<p><h4><b>CPU usage :
+							<input type="text"size="12" ng-model="cpu"/></b></h4></p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-4 box0">
+						<div class="box1">
+							<p><h4><b>There is a file(>500 Mo):
+							  <input type="text" size="16"ng-model="volfile"/></b></h4></p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-4 box0">
+                  		<div class="box1">
+							<p><h4><b>Status of disk usage(75%) :
+							  <input type="text"size="10" ng-model="disk"/></b></h4> </p>
+                  		</div>
+                  	</div>
+					<div class="col-md-6 col-sm-4 box0">
               			<div class="box1">
                              <h4><b>Services Status</b></h4></br>
 			                 <h6><b>DHCP Service      :<input type="text" ng-model="servicedhcp" size="20"/><br/></b></h6>
 			                 <h6><b>DNS Service       : <input type="text" ng-model="servicedns" size="20"/><br/></b></h6>
 							 <h6><b>Freeswitch Service:    <input type="text" ng-model="servicefree" size="20"/></b></h6>
 							<h6><b>ntp Service  :    <input type="text" ng-model="servicentp" size="20"/></b></h6>
-                  		</div>
-                  	</div>
-                    <div class="col-md-6 col-sm-4 box0">
-                  		<div class="box1">
-				             <h4><b>firewall contains rules </b></h4>
-                             <h6><b><input type="text" ng-model="firewall" size="12"/></b></h6>
-                  		</div>
-                  	</div>
-                    		 
-					<div class="col-md-6 col-sm-4 box0">
-                 		<div class="box1">     
-							<h4><b>There is a default route</b></h4>
-							<h6><b> <input type="text"size="14" ng-model="route"/></b></h6>
-						</div>
-                  	</div>
-					<div class="col-md-6 col-sm-4 box0">
-                  		<div class="box1">
-							<h4><b>Delay in packet send </b></h4>
-							<h6><b>  <input type="text" size="8"ng-model="delay"/></b></h6>
-                  		</div>
-                  	</div> 
-					<div class="col-md-6 col-sm-4 box0">
-						<div class="box1">
-							<h4><b>CPU usage.</b></h4>
-							<h6><b><input type="text"size="12" ng-model="cpu"/></b></h6>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-4 box0">
-						<div class="box1">
-							<h4><b>There is a file(>500 Mo)</b></h4>
-							<h6><b>  <input type="text" size="16"ng-model="volfile"/></b></h6>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-4 box0">
-                  		<div class="box1">
-							<h4><b>Status of disk usage(75%)</b></h4>
-							<h6><b>  <input type="text"size="10" ng-model="disk"/></b></h6> 
                   		</div>
                   	</div>
 					</div>

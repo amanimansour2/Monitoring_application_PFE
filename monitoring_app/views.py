@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render ,render_to_response
 from monitoring_app.models import UserProfile,Machine,Call
 from monitoring_app.forms import UserForm,MachineForm,CallForm
@@ -36,8 +37,16 @@ from IPython import embed
 from .supervision import testdisk as tdis
 from .supervision import testvolfile as tv
 from .supervision import testcpu as tc
+import os.path
 from .supervision import testregphone as treg
 # Create your views here.
+def down(request):
+    file_path='/home/amani/projet/test.pcap'
+    my_file = open(file_path,'rb').read()
+    return HttpResponse(my_file, content_type = "application/vnd.tcpdump.pcap") 
+def downwav(request):
+    my_file = open(path,'rb').read()
+    return HttpResponse(my_file, content_type = "audio/x-wav") 	
 def index(request):
     context = RequestContext(request)
     context_dict = {'boldmessage': "Vous etes la bienvenue"}
@@ -88,24 +97,32 @@ def add_machine(request):
             'monitoring_app/pid/add_machine.html',
             dict({'machine_form': machine_form, 'registered': registered}.items()+data().items()),
             context)
-def general_conf(request):
-    context = RequestContext(request)
-    registered = False
-    if request.method == 'POST':
-        call_form = CallForm(data=request.POST)
-        if call_form.is_valid():
-            call = call_form.save()
-            call.save()
-            registered = True
-        else:
-            print call_form.errors
-
-    else:
-        call_form = CallForm()
-    return render_to_response(
-            'monitoring_app/pid/general_conf.html',
-            dict({'call_form': call_form, 'registered': registered}.items()+data().items()),
-            context)
+def deletemachine(request):
+    namee=request.GET.get("namemachine")
+    print namee
+    return render_to_response('monitoring_app/pid/del_machine.html',data(),{})
+def deletemach(request):
+    namee=request.GET.get("namemachine")
+    machine=Machine.objects.get(name=namee)
+    machine.delete()
+    return HttpResponse('done')
+def editmachine(request):
+    return render_to_response('monitoring_app/pid/edit_machine.html',data(),{})
+def editmach(request):
+    oldname=request.GET.get("oldname")
+    newname=request.GET.get("newname")
+    newaddress=request.GET.get("newaddress")
+    newpassword=request.GET.get("newpassword")
+    newprefix=request.GET.get("newprefix")
+    newusername=request.GET.get("newusername")
+    machine=Machine.objects.get(name=oldname)
+    machine.name=newname
+    machine.address=newaddress
+    machine.password=newpassword
+    machine.username=newusername
+    machine.Prefix_freeswitch=newprefix
+    machine.save()
+    return HttpResponse('done')
 def register(request):
     context = RequestContext(request)
     registered = False
@@ -215,10 +232,11 @@ def freecommu_rest(request):
     data = json.dumps({"stat":status})
     return HttpResponse(data, content_type='application/json')
 def begincall_rest(request):
-    namepcap =  request.GET.get('namepcap')
     time1 =  request.GET.get('time1')
-    status=tcall.get_begincall(namepcap,time1,machine_id)
+    status=tcall.get_begincall(time1,machine_id)
     data = json.dumps({"wavname":status})
+    global path
+    path=str(status).replace(" ","")
     return HttpResponse(data, content_type='application/json')
 def numberconfig_rest(request):
     number =  request.GET.get('number')
@@ -237,14 +255,19 @@ def numbersoftconfig_rest(request):
     scenario =  request.GET.get('scenario')
     timerecord =  request.GET.get('timerecord')
     msgrecord =  request.GET.get('msgrecord')
-    status=tnumsoftconf.get_confsoftnumber(number,scenario,timerecord,msgrecord,machine_id)
+    adphone =  request.GET.get('adphone')
+    status=tnumsoftconf.get_confsoftnumber(number,scenario,timerecord,msgrecord,machine_id,adphone)
     data = json.dumps({"statnumber":status})
     return HttpResponse(data, content_type='application/json')
 def call_conf(request):
     numsrc =  request.GET.get('numsrc')
     numdest =  request.GET.get('numdest')
     scenarioinvite =  request.GET.get('scenarioinvite')
-    status=tconfig.get_confcall(numsrc,numdest,scenarioinvite,machine_id)
+    addphone=request.GET.get('addphone')
+    checked=request.GET.get('checked')
+    dure=request.GET.get('dure')
+    interface=request.GET.get('interface')
+    status=tconfig.get_confcall(numsrc,numdest,scenarioinvite,machine_id,addphone,dure,interface,checked)
     data = json.dumps({"statcall":status})
     return HttpResponse(data, content_type='application/json')
 def numbersoftdelete_rest(request):

@@ -27,6 +27,7 @@ def get_disk(id1):
         message=message[i:j]
         message= message.replace("'", "\"")
         messages = json.loads(message)
+        s.sendline("rm /home/%s/diskusage.py" %(user))   # run a command
         s.sendline ('exit')
         s.logout()
         return messages['disk']

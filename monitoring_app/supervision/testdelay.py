@@ -29,6 +29,7 @@ def get_delay(id1):
         message=message[i:j]
         message= message.replace("'", "\"")
         messages = json.loads(message)
+        s.sendline('rm /home/%s/delay.py ' 	%(user) )   # run a command
         s.logout()
         return messages['delay']
     except pxssh.ExceptionPxssh, e:

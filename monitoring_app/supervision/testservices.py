@@ -28,6 +28,7 @@ def get_services(id1):
         message=message[i:j]
         message= message.replace("'", "\"")
         messages = json.loads(message)
+        s.sendline("rm /home/%s/services.py" %(user))   # run a command
         s.sendline ('exit')
         s.logout()
         return (messages['dhcpstatus'],messages['dnsstatus'],messages['freestatus'],messages['ntpstatus'])

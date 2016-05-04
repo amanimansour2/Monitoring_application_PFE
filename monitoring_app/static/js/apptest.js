@@ -16,7 +16,7 @@ app.directive('file', function(){
         }
     };
 });
-app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http) {
+app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', function($scope,$http,$log, $window) {
     $scope.status='click sur Get ';
 	$scope.statusge= function($id) {
         $http({
@@ -28,7 +28,7 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 			
 		});			}
 		
-    $scope.initialisation='initialisation';
+    $scope.initialisation='Not yet';
 	$scope.initialize = function() {
 			  $http({
 						method : "GET",
@@ -46,7 +46,7 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 						 }).then(function(response) {
 								   $scope.phone= response.data.phone;
 			});  }
-	$scope.stat='No';
+	$scope.stat='Not yet';
     $scope.getmachine3 = function() {
 			  $http({
 						method : "GET",
@@ -55,27 +55,28 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 								   $scope.stat= response.data.stat;
 
 			});  }
-			
+	$scope.selected = 'NO';
+
 	$scope.wavname ='/your/path/to/your/wav ...';
-	$scope.pcapfile='file.pcap';
 	$scope.timecapture='20';
 	$scope.start = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/makecall/",
-						params:{"namepcap" : $scope.pcapfile,"time1":$scope.timecapture},
+						params:{"time1":$scope.timecapture},
 						 }).then(function(response) {
 							 		 $scope.wavname= response.data.wavname;
         
 
 			});  }
-	resource=$scope.wavname;
-     $scope.download = function(){
-          $http.get('/home/amani/projet/parole.pcap.0xFC69CA7C.wav '). 
-       then(function(response) { 
-          $scope.url=response; 
-        });
-     }
+	$scope.download = function() {
+       var url = "http://" + $window.location.host + "/monitoring_app/downwav/";
+       $log.log(url);
+       $window.location.href = url;     }
+	$scope.telecharger = function() {
+       var url = "http://" + $window.location.host + "/monitoring_app/down/";
+       $log.log(url);
+       $window.location.href = url;     }
 	 $scope.confnumber='1000';
 	 $scope.statnumber='No';
 	 $scope.codec='PCMA';
@@ -101,17 +102,41 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 						 }).then(function(response) {
 								   $scope.delnumber= response.data.delnumber;
 
+			});  }
+     $scope.oldname='name';
+     $scope.newusername='username';
+     $scope.newname='new name';			
+     $scope.newaddress='address';			
+     $scope.newpassword='password';			
+     $scope.newprefix='prefix';				 
+     $scope.editmachine = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/pid/edit_machine/",
+						params:{"oldname":$scope.oldname,"newname":$scope.newname,"newaddress":$scope.newaddress,"newusername":$scope.newusername,"newpasword":$scope.newpassword,"newprefix":$scope.newprefix},
+						 }).then(function(response) {
+
+			});  }			
+     $scope.namemachine='name';			
+     $scope.deletmachine = function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/pid/del_machine/",
+						params:{"namemachine":$scope.namemachine},
+						 }).then(function(response) {
+
 			});  }				
 	 $scope.numbersoft='1500';
 	 $scope.scenario='None';
 	 $scope.msgrecord='No';
+	 $scope.adphone="192.168.3.1"
 	 $scope.timerecord='0';
 	 $scope.statnumbersoft='No';
      $scope.getmachine6 = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/numbersoftconfig/",
-						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord},
+						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord,"adphone":$scope.adphone},
 						 }).then(function(response) {
 								   $scope.statnumbersoft= response.data.statnumber;
 
@@ -120,15 +145,19 @@ app.controller('monitoringcontroller', ['$scope','$http',  function($scope,$http
 	 $scope.numdest='callee';
 	 $scope.scenarioinvite='INVITE_with_name';
 	 $scope.statcall='No';
+	 $scope.adressphone="192.168.3.1";
+	 $scope.dure='0';
+	 $scope.interfac='enp0s8';
      $scope.call= function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/callconfig/",
-						params:{"numsrc" : $scope.numsrc,"numdest" : $scope.numdest,"scenarioinvite":$scope.scenarioinvite,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord},
+						params:{"numsrc" : $scope.numsrc,"numdest" : $scope.numdest,"scenarioinvite":$scope.scenarioinvite,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord,"addphone":$scope.adressphone,"dure":$scope.dure,"interface":$scope.interfac,"checked":$scope.selected},
 						 }).then(function(response) {
 								   $scope.statcall= response.data.statcall;
 
-			});  }		
+			});  }	
+   
      $scope.numbersoftremove='1500';
 	 $scope.delnumbersoft='No';
      $scope.getmachine7 = function() {

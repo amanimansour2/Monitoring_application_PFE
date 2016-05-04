@@ -1,0 +1,34 @@
+{% extends "monitoring_app/bases/index.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+      <section id="main-content">
+          <section class="wrapper">
+		  		  <div ng-controller="monitoringcontroller">
+
+	         <div class=" main-chart">
+          		<div class="col-lg-6">
+                  <div class="form-panel">
+				  
+                  	   <h4 class="mb"><i class="fa fa-angle-right"></i> Delete Machine:</h4>
+					  
+                           <form id="machine_form" method="post" action="/monitoring_app/pid/del_machine/"
+                                             enctype="multipart/form-data">
+                           <h6><b> Select the machine name to delete <select name="name"  ng-model="namemachine">
+						   {% for machine in machine_detail %}
+                          <option selected>{{ machine.name }}</option>
+						  {% endfor %}</select></b></h6>	
+						  <button type="button" class="btn btn-theme02" ng_click="deletmachine()">Delete machine</button>
+ 
+										</form>
+
+					   
+                     		  </div>
+
+                  </div>	
+          	</div>
+			</div>
+		</section>
+      </section>
+{% endblock %}

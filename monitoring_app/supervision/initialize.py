@@ -30,7 +30,8 @@ def get_initialize(id1):
         s.sendline("python /home/%s/initializerFS.py %s" %(user,user))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
-        print message		
+        s.sendline("rm /home/%s/initializerFS.py " %(user))   # run a command
+        s.sendline("rm -R /home/%s/FSinitial/" %(user))   # run a command
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]

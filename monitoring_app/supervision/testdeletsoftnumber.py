@@ -29,7 +29,7 @@ def get_delsoftnumber(number,id1):
         s.sendline("python /home/%s/removesoftnumber.py  %s " % (user,ch))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
-        print message
+        s.sendline("rm /home/%s/removesoftnumber.py  %s " % (user,ch))   # run a command
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]

@@ -23,15 +23,14 @@ def get_volfile(id1):
         s.sendline("python /home/%s/voluminousfile.py" %(user))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
-        print message		
         i=message.find('{')
         j=message.find('}')+1
         message=message[i:j]
         message= message.replace("'", "\"")
         messages = json.loads(message)
+        s.sendline("rm /home/%s/voluminousfile.py" %(user))
         s.sendline ('exit')
         s.logout()
-        print messages
         return messages['volfile']
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."

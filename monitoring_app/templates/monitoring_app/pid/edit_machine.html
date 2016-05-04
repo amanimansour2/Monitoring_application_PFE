@@ -1,0 +1,39 @@
+{% extends "monitoring_app/bases/index.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+      <section id="main-content">
+          <section class="wrapper">
+		  		  <div ng-controller="monitoringcontroller">
+
+	         <div class=" main-chart">
+          		<div class="col-lg-6">
+                  <div class="form-panel">
+				  
+                  	   <h4 class="mb"><i class="fa fa-angle-right"></i> Edit Machine:</h4>
+					  
+                           <form id="machine_form" method="post" action="/monitoring_app/pid/edit_machine/"
+                                             enctype="multipart/form-data">
+                           <h6><b> Select the machine name to edit <select name="name"  ng-model="oldname">
+						   {% for machine in machine_detail %}
+                          <option selected>{{ machine.name }}</option>
+						  {% endfor %}</select></b></h6>	
+						  <h6><b> Insert the new name<input type="text" ng-model="newname" size="15"/></b></h6>							
+						  <h6><b> Insert the new address<input type="text" ng-model="newaddress" size="15"/></b></h6>	
+						  <h6><b> Insert the new username<input type="text" ng-model="newusername" size="15"/></b></h6>							                                    						  
+						  <h6><b> Insert the new password<input type="text" ng-model="newpassword" size="15"/></b></h6>							
+						  <h6><b> Insert the new prefix<input type="text" ng-model="newprefix" size="15"/></b></h6>							                                    
+						  <button type="button" class="btn btn-theme02" ng_click="editmachine()">Edit machine</button>
+ 
+										</form>
+
+					   
+                     		  </div>
+
+                  </div>	
+          	</div>
+			</div>
+		</section>
+      </section>
+{% endblock %}
