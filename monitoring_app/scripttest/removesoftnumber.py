@@ -33,6 +33,12 @@ for extension in tree.xpath("/include/context/extension"):
             f.write(etree.tostring(tree, pretty_print=True))
             f.close()	
             con.api("reloadxml")
+    if str(extension.get('name'))=="DTMF_FOR_"+numero:
+        extension.getparent().remove(extension)        
+        f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
+        f.write(etree.tostring(tree, pretty_print=True))
+        f.close()
+        con.api("reloadxml")
 tree = etree.parse("/usr/local/freeswitch/conf/dialplan/public.xml")
 for extension in tree.xpath("/include/context/extension"):
     if str(extension.get('name'))=="public_extensions":

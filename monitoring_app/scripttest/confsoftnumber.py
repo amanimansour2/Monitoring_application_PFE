@@ -124,6 +124,14 @@ if (scenario=="None")or(scenario=="Forbidden")or (scenario=="Service_Unavailable
                 f.close()	
                 if con.connected():
                     con.api("reloadxml")
+    if selecteddd=="NO":
+        for extension in tree.xpath("/include/context/extension"):
+            if str(extension.get('name'))=="DTMF_FOR_"+numero:
+                extension.getparent().remove(extension)        
+                f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
+                f.write(etree.tostring(tree, pretty_print=True))
+                f.close()
+                con.api("reloadxml")
     if scenario=="None":
         tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
         for extension in tree.xpath("/include/context/extension"):
