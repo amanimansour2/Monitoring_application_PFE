@@ -17,7 +17,7 @@ app.directive('file', function(){
     };
 });
 app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', function($scope,$http,$log, $window) {
-    $scope.status='click sur Get ';
+    $scope.status='Status';
 	$scope.statusge= function($id) {
         $http({
 		method : "GET",
@@ -56,8 +56,11 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 
 			});  }
 	$scope.selected = 'NO';
-
+	$scope.selectedd = 'NO';
+	$scope.selecteddd = 'NO';
 	$scope.wavname ='/your/path/to/your/wav ...';
+	$scope.intercapture='enp0s8';
+	$scope.addcapture='192.168.3.1';
 	$scope.timecapture='20';
 	$scope.start = function() {
 			  $http({
@@ -117,6 +120,21 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 						 }).then(function(response) {
 
 			});  }			
+	$scope.update = function() {
+		          $http({
+						method : "GET",
+						url : "/monitoring_app/pid/edit_machine_DB/",
+					   params:{"oldname":$scope.oldname},
+						 }).then(function(response) {
+	  $scope.newname = $scope.oldname;
+      $scope.newaddress = response.data.address;
+     $scope.newusername = response.data.username;
+     $scope.newpassword = response.data.password;
+     $scope.newprefix = response.data.Prefix_freeswitch; 
+
+
+			});  }	
+    
      $scope.namemachine='name';			
      $scope.deletmachine = function() {
 			  $http({
@@ -129,14 +147,15 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 	 $scope.numbersoft='1500';
 	 $scope.scenario='None';
 	 $scope.msgrecord='No';
-	 $scope.adphone="192.168.3.1"
+	 $scope.adphone="192.168.3.1";
+	 $scope.dtmf="0123456789";
 	 $scope.timerecord='0';
 	 $scope.statnumbersoft='No';
      $scope.getmachine6 = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/numbersoftconfig/",
-						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord,"adphone":$scope.adphone},
+						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord,"adphone":$scope.adphone,"dtmf":$scope.dtmf,"selecteddd":$scope.selecteddd},
 						 }).then(function(response) {
 								   $scope.statnumbersoft= response.data.statnumber;
 
@@ -157,7 +176,18 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 								   $scope.statcall= response.data.statcall;
 
 			});  }	
-   
+     $scope.testscenarioo='No';	
+	 $scope.duree='0';
+	 $scope.interfacc='enp0s8';
+        $scope.testscenario= function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/calltest/",
+						params:{"dure":$scope.duree,"interface":$scope.interfacc,"checked":$scope.selectedd},
+						 }).then(function(response) {
+								   $scope.testscenarioo= response.data.testscenarioo;
+
+			});  }
      $scope.numbersoftremove='1500';
 	 $scope.delnumbersoft='No';
      $scope.getmachine7 = function() {
@@ -168,7 +198,10 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 						 }).then(function(response) {
 								   $scope.delnumbersoft= response.data.delnumbersoft;
 
-			});  }				
+			});  }			
+
+  			
+			
     $scope.firewall='status firewall';
 	$scope.route='default route';
 	

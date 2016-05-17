@@ -4,24 +4,50 @@
 {% block content %}
       <section id="main-content">
           <section class="wrapper">
-                  <div class="main-chart"><div>
-                  <h2><b>Check the status of your Machines </b></h2><br/>						  
+                  <div class="main-chart">
+				    <div class="jumbotron">
+	         <div style="width: 100%;">
+	           <h1 style="float: left;">Général status<h1/>
+			   <div><a href="javascript:toggleDiv('inf');" style="float:right; font-size:15px; width: 100px; cursor:pointer;">Get INFO</a>
+			   <img id="me" src="http://www.randomsnippets.com/wp-content/uploads/2011/04/2.png" alt="It&#039;s me.ah!!!" title="Allen Liu" width="100" height="50" class="alignnone size-full wp-image-552" style="border: none;float:right;" />
+			   		</div>	   </div></br><br/>
+
+</div>				  
+
+                   <pre id="inf" style="display:none"> 
+                  <h5><b>To check the general status of your machine ,you need to click on the "Get status" bottom.</b>
+				  <br><b>The status will be presented us a color: Green or Orange or Red .</b>
+				  <br><b>Red means that :</b>
+				  <br>                  -There are a delay in packet send
+				  <br>                  -Or used disck is more than 75%
+				  <br>                  -Or there are no default route 
+				  <br><b>Orange means that :</b>
+				  <br>                  -There are a voluminous file (more than 500Mo)
+				  <br >                 -At least ,one of those services is OFF: DHCP or FreeSWITCH or DNS or ntp
+				  <br >                 -There are a firewall rules 
+				  <br><b>Green means that </b>the machine is well. 
+				  <br>To have an idéa about the real cause of the color, you must go to the "machine détail" module. <h5/></pre>
 						 {% for machine in machine_detail %}
-						 <div class="col-md-3 col-sm-3 box0">
+						 <div class="col-md-4 col-sm-3 box0">
                   			<div class="box1">
 						       <div ng-controller="monitoringcontroller">
 							    <h2> {{ machine.name }}</h2>
-					  			<span class="li_data"></span>
+								<span class="li_data" ng_show="status == 'Status' "></span>
+					  			<spanv class="li_data" ng_if="status == 'Green'" ></spanv>
+								<spano class="li_data" ng_if="status == 'Orange'" ></spano>
+					  			<spanr class="li_data" ng_if="status == 'Red'" ></spanr>
+
 				                 </br>
-						<button type="button" class="btn btn-theme" ng-click="statusge({{machine.id}})">Get</button></br></br>
-		              <h5><b>Status:<input  type="text" ng-model="status" size="12"/><br/></b></h5>
-					         
-      
+						<button type="button" class="btn btn-theme" ng-click="statusge({{machine.id}})">Get status</button></br></br>
+		              <h5><b>Status:<input  id='stat' type="text" ng-model="status" size="12" /><br/></b></h5>
+					               
 								</div>
                   			</div>
 					  			
                   		</div>
-                  	{% endfor %} 
+                  	{% endfor %}
+					
+					</div>
                   </div>
 			 </section>
 			 </section>

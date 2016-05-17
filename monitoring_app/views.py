@@ -33,6 +33,7 @@ from .supervision import testroute as tr
 from .supervision import statusmachine as tg
 from .supervision import initialize as tinit
 from .supervision import testcallwithscenarioinvite as tconfig
+from .supervision import testcallscenario as ttest
 from IPython import embed
 from .supervision import testdisk as tdis
 from .supervision import testvolfile as tv
@@ -71,6 +72,18 @@ def data ():
     "machine_detail" : machine
     }
     return data
+	
+def olddata_rest (request):
+    d={}
+    oldname =  request.GET.get('oldname')
+    machine = Machine.objects.get(name=oldname)
+    d['username']=machine.username
+    d['address']=machine.address
+    d['password']=machine.password
+    d['Prefix_freeswitch']=machine.Prefix_freeswitch
+    print d
+    data = json.dumps(d)
+    return HttpResponse(data, content_type='application/json')
 def status(request):
     context = RequestContext(request)
     return render_to_response('monitoring_app/pid/status.html',data(), context)
@@ -256,7 +269,9 @@ def numbersoftconfig_rest(request):
     timerecord =  request.GET.get('timerecord')
     msgrecord =  request.GET.get('msgrecord')
     adphone =  request.GET.get('adphone')
-    status=tnumsoftconf.get_confsoftnumber(number,scenario,timerecord,msgrecord,machine_id,adphone)
+    dtmf =  request.GET.get('dtmf')
+    selecteddd =  request.GET.get('selecteddd')
+    status=tnumsoftconf.get_confsoftnumber(number,scenario,timerecord,msgrecord,machine_id,adphone,dtmf,selecteddd)
     data = json.dumps({"statnumber":status})
     return HttpResponse(data, content_type='application/json')
 def call_conf(request):
@@ -269,6 +284,13 @@ def call_conf(request):
     interface=request.GET.get('interface')
     status=tconfig.get_confcall(numsrc,numdest,scenarioinvite,machine_id,addphone,dure,interface,checked)
     data = json.dumps({"statcall":status})
+    return HttpResponse(data, content_type='application/json')
+def call_test(request):
+    checked=request.GET.get('checked')
+    dure=request.GET.get('dure')
+    interface=request.GET.get('interface')
+    status=ttest.get_testcall(machine_id,dure,interface,checked)
+    data = json.dumps({"testscenarioo":status})
     return HttpResponse(data, content_type='application/json')
 def numbersoftdelete_rest(request):
     number1 =  request.GET.get('numbertodelete')

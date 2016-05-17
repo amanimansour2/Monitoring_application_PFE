@@ -250,14 +250,14 @@ th {
     border-top-color: #000 !important;
   }
   .label {
-    border: 1px solid #000;
+    border: 2px solid #000;
   }
   .table {
     border-collapse: collapse !important;
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+    border: 1.5px solid #ddd !important;
   }
 }
 @font-face {
@@ -1058,8 +1058,8 @@ h5,
 .h5,
 h6,
 .h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 h4 small,
 .h4 small,
@@ -1078,6 +1078,7 @@ h6 .small,
 h1,
 .h1 {
   font-size: 36px;
+  color: red;
 }
 h2,
 .h2 {
@@ -1100,10 +1101,8 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 0px;
+  margin: 0 0 10px;
   line-height: 75%
-
-
 }
 p span.gauche {
   float: left;
@@ -1397,7 +1396,7 @@ pre code {
 }
 .pre-scrollable {
   max-height: 340px;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 .container {
   padding-right: 15px;
@@ -1407,17 +1406,17 @@ pre code {
 }
 @media (min-width: 768px) {
   .container {
-    width: 750px;
+    width: 660px;
   }
 }
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 880px;
   }
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1090px;
   }
 }
 .container-fluid {
@@ -2070,12 +2069,12 @@ table {
   background-color: transparent;
 }
 th {
-  text-align: left;
+  text-align: 25px;
 }
 .table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 20px;
+  width: 70%;
+  max-width: 70%;
+  margin-bottom: 0px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -2101,7 +2100,7 @@ th {
   border-top: 0;
 }
 .table > tbody + tbody {
-  border-top: 2px solid #ddd;
+  border-top: 1px solid #ddd;
 }
 .table .table {
   background-color: #fff;
@@ -2116,6 +2115,7 @@ th {
 }
 .table-bordered {
   border: 1px solid #ddd;
+  line-height:15px;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2276,6 +2276,7 @@ table th[class*="col-"] {
   }
   .table-responsive > .table-bordered {
     border: 0;
+	
   }
   .table-responsive > .table-bordered > thead > tr > th:first-child,
   .table-responsive > .table-bordered > tbody > tr > th:first-child,
@@ -2312,18 +2313,19 @@ legend {
   padding: 0;
   margin-bottom: 20px;
   font-size: 21px;
-  line-height: inherit;
+  line-height: 1.4px;
   color: #333;
   border: 0;
-  border-bottom: 1px solid #e5e5e5;
+    
 }
 label {
-  display: block;
+  display: inline-block;
   max-width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   border-bottom:1px;
   background: transparent;
   border-color: #48bcb4;
+  line-height:100%;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -4557,22 +4559,24 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 .jumbotron {
-  padding: 30px;
-  margin-bottom: 30px;
-  color: inherit;
-  background-color: #eee;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 .jumbotron h1,
 .jumbotron .h1 {
-  color: inherit;
+  color: #424a5d;
+}
+.jumbotron h3 {
+  color: #424a5d;
 }
 .jumbotron p {
   margin-bottom: 15px;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 200;
+  color:#656d83;
 }
 .jumbotron > hr {
-  border-top-color: #d5d5d5;
+  border-top-color: #eee;
 }
 .container .jumbotron {
   border-radius: 6px;
@@ -4582,8 +4586,8 @@ a.list-group-item.active > .badge,
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 10px;
+    padding-bottom: 40px;
   }
   .container .jumbotron {
     padding-right: 60px;
@@ -4591,7 +4595,7 @@ a.list-group-item.active > .badge,
   }
   .jumbotron h1,
   .jumbotron .h1 {
-    font-size: 63px;
+    font-size: 48px;
   }
 }
 .thumbnail {
@@ -4831,12 +4835,12 @@ a.thumbnail.active {
 }
 .list-group {
   padding-left: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 5px 5px;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -4844,6 +4848,7 @@ a.thumbnail.active {
 .list-group-item:first-child {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+  line-height:1px;
 }
 .list-group-item:last-child {
   margin-bottom: 0;

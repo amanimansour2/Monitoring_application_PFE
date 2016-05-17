@@ -31,7 +31,7 @@
 	  
   </head>
 
-  <body ng-controller="monitoringcontroller">
+  <body ng-controller="monitoringcontroller"  >
 
   <section id="container"  >
       <!-- **********************************************************************************************************************************************************
@@ -42,7 +42,9 @@
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
-            <a href="{% url "status" %}" class="logo"><b>Monitoring Application</b></a>
+            <a href="{% url "status" %}" class="logo"><b><div style="color:#22A0D7;font-style:italic;font-size: 120%;"><u><em>TELSIP</em></u></b></div></a>
+						   <p class="centered"><img src="{% static 'assets/img/Telnet.png' %}" style="float: right"  width="250" height="60"></p>
+
         </header>
       <!--header end-->
       
@@ -57,13 +59,13 @@
                   <li class="mt">
                       <a class="active" href="{% url "status" %}">
                           <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
+                          <span>Général status</span>
                       </a>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
-                          <span>Machines</span>
+                          <span>Machine detail</span>
                       </a>
                       <ul class="sub">
 			             {% for machine in machine_detail %}
@@ -74,7 +76,7 @@
 				  <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
-                          <span>Setting</span>
+                          <span>Configure machine</span>
                       </a>
                       <ul class="sub">
                           <li><a href="{% url "add_machine" %}""> Add machine</a></li>
@@ -89,7 +91,7 @@
 				  <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
-                          <span>FreeSWITCH</span>
+                          <span>Configure FreeSWITCH</span>
                       </a>
                       <ul class="sub">
 			             {% for machine in machine_detail %}
@@ -111,7 +113,7 @@
       <section id="main-content">
           <section class="wrapper">
               <div class="row">
-                  <div class="main-chart" margin-top="20px">
+                  <div class="main-chart" >
                   {% block content %} {% endblock  %}
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
                   
@@ -121,10 +123,10 @@
 
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer" margin-top="0px">
+      <footer class="site-footer" bottom="0%" position="bottom">
           <div class="text-center">
-              2016 Telnet-Sup'com
-              <a href="status.html#" class="go-top">
+Copyright © 2016 TELNET. All rights reserved.
+              <a href="#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
           </div>
@@ -167,11 +169,48 @@
         
     });	
 }
+ 
+function selecte(id_option) {
 
-function CopyMe(oFileInput, sTargetID) {
-    var arrTemp = oFileInput.value.split('\\');
-    document.getElementById(sTargetID).value = arrTemp[arrTemp.length - 1];
+    $(function (){
+         var choix = document.getElementById(id_option).value;
+            if(choix=="Pending_Request"||choix=="Temporarily_Unavailable"||choix=="Busy_Everywhere"||choix=="Service_Unavailable"){ 
+			document.getElementById('add').style="display:block";
+            }
+			else
+			{
+	       document.getElementById('add').style="display:none";
+			}
+        if(choix=='Unauthorize'){ 
+			document.getElementById('port').style="display:block";
+            }
+			else
+			{
+	       document.getElementById('port').style="display:none";
+			}
+		if(choix=='None'){ 
+			document.getElementById('dtmf').style="display:block";
+            }
+			else
+			{
+	       document.getElementById('dtmf').style="display:none";
+			}
+   
+        
+    });	
 }
+function toggleDiv(divId) {
+   $("#"+divId).toggle();
+}
+function showDiv() {
+   document.getElementById('inf').style.display = "block";
+}
+
+
+
 </script>
+
+	
+  
   </body>
 </html>

@@ -16,19 +16,19 @@ from testservices import get_services
 def get_statuss(id1):
     try:
         if get_delay(id1)=="True":
-		    return "rouge !!!"
+		    return "Red"
         elif get_disk(id1)=="Risk":
-		    return "rouge !!!"
+		    return "Red"
         elif get_route(id1)=="False" :
-		    return "rouge !!! "
+		    return "Red"
         elif get_volfile(id1)=="True":
-		    return "orange !!!"
+		    return "Orange"
         elif (str(get_services(id1)[2])== 'OFF' )or(str(get_services(id1)[3])== 'OFF')or(str(get_services(id1)[0])== 'OFF')or str(get_services(id1)[1])== 'OFF':
-            return "orange !!!"
+            return "Orange"
         elif get_firewall(id1)=="True":
-		    return "orange !!!"
+		    return "Orange"
         else:
-		    return "Vert !!!"
+		    return "Green"
 		    
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."

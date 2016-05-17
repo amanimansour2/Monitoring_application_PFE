@@ -40,6 +40,7 @@ a, a:hover, a:focus {
 #container {
     width: 100%;
     height: 100%;
+	position:relative;
 }
 
 /* Bootstrap Modifications */
@@ -125,8 +126,8 @@ a, a:hover, a:focus {
 
 .btn-theme03 {
   color: #fff;
-  background-color: #48cfad;
-  border-color: #37bc9b;
+  background-color: #68dff0;
+  border-color: #68dff0;
 }
 .btn-theme03:hover,
 .btn-theme03:focus,
@@ -134,7 +135,7 @@ a, a:hover, a:focus {
 .btn-theme03.active,
 .open .dropdown-toggle.btn-theme03 {
   color: #fff;
-  background-color: #37bc9b;
+  background-color: #68dff0;
   border-color: #37bc9b;
 }
 
@@ -427,6 +428,7 @@ ul.sidebar-menu li a.active i {
     padding-bottom: 15px;
     padding-top: 0px;
     width: 100%;
+	min-height:542px;
 }
 
 a.logo {
@@ -850,7 +852,17 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 	font-size: 50px;
 
 }
-
+.box1 spanr{
+    font-size: 50px;
+    color:red;
+}
+.box1 spanv{
+    font-size: 50px;
+    color:green;
+}.box1 spano{
+    font-size: 50px;
+    color:#ffd777;
+}
 .box1 h3 {
 	text-align: center;
 }
@@ -2239,7 +2251,7 @@ label {
     background: #68dff0;
     color: #fff;
     padding: 10px 0;
-
+    height:100%;
 }
 
 

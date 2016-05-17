@@ -15,7 +15,7 @@
 					  
                            <form id="machine_form" method="post" action="/monitoring_app/pid/edit_machine/"
                                              enctype="multipart/form-data">
-                           <h6><b> Select the machine name to edit <select name="name"  ng-model="oldname">
+                           <h6><b> Select the machine name to edit <select name="name"  ng-model="oldname" ng-change="update()">
 						   {% for machine in machine_detail %}
                           <option selected>{{ machine.name }}</option>
 						  {% endfor %}</select></b></h6>	

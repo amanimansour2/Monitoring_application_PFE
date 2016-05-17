@@ -8,11 +8,11 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Machine(models.Model):
-    name= models.CharField(default="Machine 1",max_length=30)
-    address = models.CharField(default='168.85.69.4',max_length=12)
-    username=models.CharField(default="Foulen",max_length=30)
-    password= models.CharField(default="****",max_length=30,null=True)
-    Prefix_freeswitch=models.CharField(default="1",max_length=5)
+    name= models.CharField(default="machine name",max_length=30)
+    address = models.CharField(default='xxx.xxx.xxx.xxx',max_length=12)
+    username=models.CharField(default="username",max_length=30)
+    password= models.CharField(default="password",max_length=30,null=True)
+    Prefix_freeswitch=models.CharField(default="FreeSWITCH prefix",max_length=5)
     class Meta:
         ordering = ["name"]
     def __str__(self):

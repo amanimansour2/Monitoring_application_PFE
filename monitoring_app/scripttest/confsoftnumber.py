@@ -27,6 +27,9 @@ scenario=sys.argv[3]
 timerecord=sys.argv[4]
 msgrecord=sys.argv[5]
 adphone=sys.argv[6]
+dtmf=sys.argv[7]
+selecteddd=sys.argv[8]
+
 print msgrecord
 testexistnumber="|"+numero
 tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
@@ -52,7 +55,62 @@ if (scenario=="Unauthorize"):
         os.remove('register.py')
     if os.path.exists('testregister.xml'): 
         os.remove('testregister.xml')
-elif (scenario=="None")or(scenario=="Forbidden")or (scenario=="Service_Unavailable")or(scenario=="Busy_Here"):
+if (selecteddd=='YES'):
+    tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
+    ch=''
+    for context in tree.xpath("/include/context"): 
+        for extension in tree.xpath("/include/context/extension"):                           
+            ch+=str(extension.get('name'))
+        if ("DTMF_FOR_"+numero in ch)==False:
+            f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
+            y=etree.XML('<extension />')
+            y.set('name',"DTMF_FOR_"+numero)
+            context.insert(1,y)
+            f.write(etree.tostring(tree, pretty_print=True))
+            f.close()
+            if con.connected():
+                con.api("reloadxml")
+            for extension in tree.xpath("/include/context/extension"):              
+                ext=extension.get('name')
+                if str(ext)=="DTMF_FOR_"+numero :
+                    f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
+                    y=etree.XML('<condition field="destination_number"/>')
+                    y.set('expression',"^("+numero+")$")
+                    l1=etree.XML('<action application="export"/>')
+                    l1.set('data',"dialed_extension=$1")
+                    y.append(l1)
+                    l2=etree.XML('<action application="set"/>')
+                    l2.set('data',"ringback=${us-ring}")
+                    y.append(l2)
+                    l3=etree.XML('<action application="set"/>')
+                    l3.set('data',"transfer_ringback=$${hold_music}")
+                    y.append(l3)
+                    l4=etree.XML('<action application="set"/>')
+                    l4.set('data',"call_timeout=40")
+                    y.append(l4)
+                    l5=etree.XML('<action application="set"/>')
+                    l5.set('data',"hangup_after_bridge=true")
+                    y.append(l5)
+                    l6=etree.XML('<action application="set"/>')
+                    l6.set('data',"continue_on_fail=true")
+                    y.append(l6)
+                    l7=etree.XML('<action application="queue_dtmf"/>')
+                    l7.set('data',dtmf)
+                    y.append(l7)
+                    l6=etree.XML('<action application="set"/>')
+                    l6.set('data',"ignore_early_media=false")
+                    y.append(l6)
+                    l10=etree.XML('<action application="bridge"/>')
+                    l10.set('data',"user/${dialed_extension}@${domain_name}")
+                    y.append(l10)
+                    l11=etree.XML('<action application="answer"/>')		        
+                    y.append(l11)
+                    extension.append(y)
+                    f.write(etree.tostring(tree, pretty_print=True))
+                    f.close()
+                    con.api("reloadxml")
+				
+if (scenario=="None")or(scenario=="Forbidden")or (scenario=="Service_Unavailable")or(scenario=="Busy_Here"):
     for extension in tree.xpath("/include/context/extension"):
         if str(extension.get('name'))=="Local_Extension":
             c=extension.find('condition').get('expression')      
@@ -399,9 +457,8 @@ elif (testscenario==True)and(testnumber==False):
                 f.write(etree.tostring(tree, pretty_print=True))
                 f.close()	
                 con.api("reloadxml")
-# j=0
-# l=0
-# if (msgrecord!="No"):
+    # j=0
+    # l=0
     # tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
     # for extension in tree.xpath("/include/context/extension/condition/action"):
         # if str(extension.getparent().getparent().get('name'))=="Local_Extension":
@@ -411,8 +468,13 @@ elif (testscenario==True)and(testnumber==False):
             # l=l+1
             # if l==(j-4) :
                 # f = open('/usr/local/freeswitch/conf/dialplan/default.xml', 'w')
-                # y=etree.XML('<action application="send_dtmf"/>')
-                # y.set('data',msgrecord+"@"+timerecord)
+                # y=etree.XML('<condition field="destination_number"/>')
+                # y.set('expression',"^(1500)$")
+                # y1=etree.XML('<action application="queue_dtmf"/>')
+                # y1.set('data',"1234568")
+                # y.append(y1)
+
+
                 # extension.insert(l,y)
                 # f.write(etree.tostring(tree, pretty_print=True))
                 # f.close()
