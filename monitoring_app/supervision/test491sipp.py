@@ -39,7 +39,7 @@ def get_sipp491(id1,id2):
         s.sendline(password)
         s.sendline(("cp /home/%s/uac.xml /usr/src/sipp.svn/uac.xml")%(user))
         s.sendline("cd /usr/src/sipp.svn/")
-        s.sendline("./sipp -sf uac.xml -m 1 -i %s:%s -s 1500 %s:%s" % (address,"5067",addresss,"5062"))   # run a command
+        s.sendline("./sipp -sf uac.xml -m 1 -i %s:%s -s 1500 %s:%s" % (address,"5060",addresss,"5061"))   # run a command
         os.system("rm /usr/src/sipp.svn/uas.xml")
         time.sleep(1)
         s.sendline("rm /usr/src/sipp.svn/%s" %("uac.xml"))

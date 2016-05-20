@@ -7,7 +7,7 @@
     <![CDATA[
        INVITE sip:[service]@[remote_ip] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=z9hG4bK1ref2n30e800fb4nu741.1
-      From: <sip:1800@[local_ip]>;tag=[call_number]
+      From: <sip:[service]@[local_ip]>;tag=[call_number]
       To: <sip:[service]@[remote_ip]:[remote_port]>
       Call-ID: [call_id]
       CSeq: 1 INVITE

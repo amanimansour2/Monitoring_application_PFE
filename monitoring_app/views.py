@@ -32,7 +32,8 @@ from .supervision import testfreeconnect as tcommu
 from .supervision import testroute as tr
 from .supervision import statusmachine as tg
 from .supervision import initialize as tinit
-from .supervision import testcallwithscenarioinvite as tconfig
+from .supervision import testcallwithscenarioinvite as tconfiginvite
+from .supervision import testcallwithscenarioreinvite as tconfigreinvite
 from .supervision import testcallscenario as ttest
 from IPython import embed
 from .supervision import testdisk as tdis
@@ -266,15 +267,13 @@ def numberdelete_rest(request):
 def numbersoftconfig_rest(request):
     number =  request.GET.get('number')
     scenario =  request.GET.get('scenario')
-    timerecord =  request.GET.get('timerecord')
-    msgrecord =  request.GET.get('msgrecord')
     adphone =  request.GET.get('adphone')
     dtmf =  request.GET.get('dtmf')
     selecteddd =  request.GET.get('selecteddd')
-    status=tnumsoftconf.get_confsoftnumber(number,scenario,timerecord,msgrecord,machine_id,adphone,dtmf,selecteddd)
+    status=tnumsoftconf.get_confsoftnumber(number,scenario,machine_id,adphone,dtmf,selecteddd)
     data = json.dumps({"statnumber":status})
     return HttpResponse(data, content_type='application/json')
-def call_conf(request):
+def invite_conf(request):
     numsrc =  request.GET.get('numsrc')
     numdest =  request.GET.get('numdest')
     scenarioinvite =  request.GET.get('scenarioinvite')
@@ -282,7 +281,17 @@ def call_conf(request):
     checked=request.GET.get('checked')
     dure=request.GET.get('dure')
     interface=request.GET.get('interface')
-    status=tconfig.get_confcall(numsrc,numdest,scenarioinvite,machine_id,addphone,dure,interface,checked)
+    status=tconfiginvite.get_confcall(numsrc,numdest,scenarioinvite,machine_id,addphone,dure,interface,checked)
+    data = json.dumps({"statcall":status})
+    return HttpResponse(data, content_type='application/json')
+def reinvite_conf(request):
+    numclient =  request.GET.get('numclient')
+    addclient =  request.GET.get('addclient')
+    scenarioreinvite =  request.GET.get('scenarioreinvite')
+    checked=request.GET.get('checked')
+    dure=request.GET.get('dure')
+    interface=request.GET.get('interface')
+    status=tconfigreinvite.get_confcall1(numclient,addclient,scenarioreinvite,machine_id,dure,interface,checked)
     data = json.dumps({"statcall":status})
     return HttpResponse(data, content_type='application/json')
 def call_test(request):

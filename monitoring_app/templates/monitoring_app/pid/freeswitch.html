@@ -231,11 +231,31 @@ In this module:
         <div class="panel-body">
 		
 		<pre>		
-			                 <h6>Test number(caller):<input type="text" ng-model="numsrc" size="8"/></h6>
-							 <h6>soft phone number (calle):<input type="text" ng-model="numdest" size="8"/></b></h6>
-                             <h6>Select the scenario :<select id="scenario1" name="scenario"  ng-model="scenarioinvite" onchange="selecte('scenario1')">
-			                 <option selected>INVITE_with_name<option >Anonymous_INVITE<option >INVITE_without_SDP<option >Pending_Request<option >Temporarily_Unavailable<option >Busy_Everywhere<option >Service_Unavailable</select></b></h6>						
-					         <div id="add" style="display:none" ><h6 >Insert IP address of your sip phone<input type="text"  ng-model="adressphone" size="15"/></h6> </div>							
+		<h6><b>INVITE Scenario</b></h6>
+		<div>
+		 <h6>Select the scenario :<select id="scenario1" name="scenario"  ng-model="scenarioinvite" onchange="selecte('scenario1')">
+			                 <option selected>INVITE_with_name<option >Anonymous_INVITE<option >INVITE_without_SDP</select></b></h6>						
+			                 <h6><b>Test number(caller):<input type="text" ng-model="numsrc" size="8"/></b></h6>
+							 <h6><b>soft phone number (calle):<input type="text" ng-model="numdest" size="8"/></b></h6>
+							   <div style="width: 100%;">
+							<button type="button" class="btn btn-theme03" style="float: left" ng-click="call1()">Test INVITE</button>
+							 <h6><input type="text"  ng-model="statcall1" style="margin: 2px; float: right;width:200px;height:33px;" size="10" /></h6>
+                             </div>
+							 <div>
+							 </br></br>					
+                        </div>
+         <h6><b> Re-INVITE Scenario</b></h6>
+                           <div>
+                            <h6>Select the scenario :<select id="scenario2" name="scenario"  ng-model="scenarioreinvite" onchange="selecte('scenario2')">
+			                 <option selected>Pending_Request<option >Temporarily_Unavailable<option >Busy_Everywhere<option >Service_Unavailable</select></b></h6>	
+			                 <h6><b>Insert client number :<input type="text" ng-model="numclient" size="8"/></b></h6>
+			                 <h6><b>Insert client address :<input type="text" ng-model="addclient" size="8"/></b></h6>			
+                              <div style="width: 100%;">
+							<button type="button" class="btn btn-theme03" style="float: left" ng-click="call2()">Test Re-INVITE</button>
+							 <h6><input type="text"  ng-model="statcall2" style="margin: 2px; float: right;width:200px;height:33px;" size="10" /></h6>
+                             </div> 							 
+							 </div>		 
+	                       <div id="add" style="display:none" ><h6 >Insert IP address of your sip phone<input type="text"  ng-model="adressphone" size="15"/></h6> </div>							
 							  <h6>Launch Wireshark:</h6>
 							  <h6><input  type="radio" id="rad1" style="float: left" ng-model="selected" value="YES" onchange="selection('rad1', 'YES', 'donne')"/>YES</h6> </br>
 								<div id="donne" style="display:none">
@@ -245,13 +265,6 @@ In this module:
 									</div>
 								<h6><input  type="radio"  ng-model="selected" id="rad2" value="NO" style="float: left" onchange="selection('rad2', 'YES', 'donne')"/>NO</h6></br></br>
 								
-							   <div style="width: 100%;">
-							<button type="button" class="btn btn-theme03" style="float: left" ng-click="call()">Call</button>
-							 <h6><input type="text"  ng-model="statcall" style="margin: 2px; float: right;width:200px;height:33px;" size="10" /></h6>
-                             </div>
-							 <div>
-							 </br></br>							
-					
 						</pre>
 							<!-- Modal -->
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

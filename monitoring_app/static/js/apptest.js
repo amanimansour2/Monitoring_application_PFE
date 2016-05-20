@@ -146,16 +146,14 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 			});  }				
 	 $scope.numbersoft='1500';
 	 $scope.scenario='None';
-	 $scope.msgrecord='No';
 	 $scope.adphone="192.168.3.1";
 	 $scope.dtmf="0123456789";
-	 $scope.timerecord='0';
 	 $scope.statnumbersoft='No';
      $scope.getmachine6 = function() {
 			  $http({
 						method : "GET",
 						url : "/monitoring_app/numbersoftconfig/",
-						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord,"adphone":$scope.adphone,"dtmf":$scope.dtmf,"selecteddd":$scope.selecteddd},
+						params:{"number" : $scope.numbersoft,"scenario":$scope.scenario,"adphone":$scope.adphone,"dtmf":$scope.dtmf,"selecteddd":$scope.selecteddd},
 						 }).then(function(response) {
 								   $scope.statnumbersoft= response.data.statnumber;
 
@@ -163,19 +161,35 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 	 $scope.numsrc='caller';
 	 $scope.numdest='callee';
 	 $scope.scenarioinvite='INVITE_with_name';
-	 $scope.statcall='No';
+	 $scope.statcall1='No';
 	 $scope.adressphone="192.168.3.1";
 	 $scope.dure='0';
 	 $scope.interfac='enp0s8';
-     $scope.call= function() {
+     $scope.call1= function() {
 			  $http({
 						method : "GET",
-						url : "/monitoring_app/callconfig/",
-						params:{"numsrc" : $scope.numsrc,"numdest" : $scope.numdest,"scenarioinvite":$scope.scenarioinvite,"timerecord":$scope.timerecord,"msgrecord":$scope.msgrecord,"addphone":$scope.adressphone,"dure":$scope.dure,"interface":$scope.interfac,"checked":$scope.selected},
+						url : "/monitoring_app/inviteconfig/",
+						params:{"numsrc" : $scope.numsrc,"numdest" : $scope.numdest,"scenarioinvite":$scope.scenarioinvite,"addphone":$scope.adressphone,"dure":$scope.dure,"interface":$scope.interfac,"checked":$scope.selected},
 						 }).then(function(response) {
-								   $scope.statcall= response.data.statcall;
+								   $scope.statcall1= response.data.statcall1;
 
 			});  }	
+	 $scope.numclient='1000';
+	 $scope.addclient='192.168.3.9';
+	 $scope.scenarioreinvite='Pending_Request';
+	 $scope.statcall2='No';
+	 $scope.adressphone="192.168.3.1";
+	 $scope.dure='0';
+	 $scope.interfac='enp0s8';
+     $scope.call2= function() {
+			  $http({
+						method : "GET",
+						url : "/monitoring_app/reinviteconfig/",
+						params:{"numclient" : $scope.numclient,"addclient" : $scope.addclient,"scenarioreinvite":$scope.scenarioreinvite,"addphone":$scope.adressphone,"dure":$scope.dure,"interface":$scope.interfac,"checked":$scope.selected},
+						 }).then(function(response) {
+								   $scope.statcall2= response.data.statcall2;
+
+			});  }
      $scope.testscenarioo='No';	
 	 $scope.duree='0';
 	 $scope.interfacc='enp0s8';
