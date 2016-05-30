@@ -1,0 +1,26 @@
+#Welcom to TELSIP application 
+#TELSIP est une application web permet de :
+#    >Superviser le statut général d'une machine 
+#    >Configurer des machines  ajout/modification/suppression
+#    >Configurer le serveur FreeSWITCH
+#        >>initialiser FS
+#        >>Vérifier tous les nombres enregistrés sur FS
+#        >>Configurer un numéro de test : avec codec spécifique
+#        >>Configurer un numéro pour un client SIP avec un scénario spécifique : Normal (with ou without DTMF);Basy Here;Forbidden ;Unauthorized; ...
+#        >>Configurer autres scénarios liés aux messages INVITE et Re_INVITE 
+#    >Générer un fichier de capture téléchargable 
+#    >Validation des test par l'outil "Scapy"
+#afin de lancer notre application, nous avons besoin de lancer apartir du répertoire /home/amani/projet/PFE/ " la commande make run 
+#ainsi l'utilisateur doit être dans l'environement de travail Training : tous les outil nécéssaires installer par PIP se trouve dans le fichier requerment .txt
+#pour cette machine ( machine de développement de cette application nous avons comme propriétés :
+#    >Version linux 15.10
+#    >Version python 2.7.10
+#    >Version Django 1.9.2
+#    >Static address 192.168.3.5
+#    >Static interface "enp0s8" 
+
+#Pour lancer le FS, il suffit de lancer la commande ./freeswitch.sh dans le répertoire /home/amani/
+
+
+
+

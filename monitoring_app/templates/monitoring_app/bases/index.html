@@ -59,7 +59,7 @@
                   <li class="mt">
                       <a class="active" href="{% url "status" %}">
                           <i class="fa fa-dashboard"></i>
-                          <span>Général status</span>
+                          <span>General status</span>
                       </a>
                   </li>
                   <li class="sub-menu">
@@ -174,13 +174,6 @@ function selecte(id_option) {
 
     $(function (){
          var choix = document.getElementById(id_option).value;
-            if(choix=="Pending_Request"||choix=="Temporarily_Unavailable"||choix=="Busy_Everywhere"||choix=="Service_Unavailable"){ 
-			document.getElementById('add').style="display:block";
-            }
-			else
-			{
-	       document.getElementById('add').style="display:none";
-			}
         if(choix=='Unauthorize'){ 
 			document.getElementById('port').style="display:block";
             }
@@ -188,7 +181,7 @@ function selecte(id_option) {
 			{
 	       document.getElementById('port').style="display:none";
 			}
-		if(choix=='None'){ 
+		if(choix=='Normal'){ 
 			document.getElementById('dtmf').style="display:block";
             }
 			else

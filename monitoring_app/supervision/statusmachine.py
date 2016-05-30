@@ -17,7 +17,7 @@ def get_statuss(id1):
     try:
         if get_delay(id1)=="True":
 		    return "Red"
-        elif get_disk(id1)=="Risk":
+        elif get_disk(id1)=="Risky":
 		    return "Red"
         elif get_route(id1)=="False" :
 		    return "Red"

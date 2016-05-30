@@ -24,13 +24,10 @@ d={}
 adsrc=sys.argv[1]
 numero=sys.argv[2]
 scenario=sys.argv[3]
-timerecord=sys.argv[4]
-msgrecord=sys.argv[5]
-adphone=sys.argv[6]
-dtmf=sys.argv[7]
-selecteddd=sys.argv[8]
+adphone=sys.argv[4]
+dtmf=sys.argv[5]
+selecteddd=sys.argv[6]
 
-print msgrecord
 testexistnumber="|"+numero
 tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
 if (scenario=="Unauthorize"):
@@ -110,7 +107,7 @@ if (selecteddd=='YES'):
                     f.close()
                     con.api("reloadxml")
 				
-if (scenario=="None")or(scenario=="Forbidden")or (scenario=="Service_Unavailable")or(scenario=="Busy_Here"):
+if (scenario=="Normal")or(scenario=="Forbidden")or (scenario=="Service_Unavailable")or(scenario=="Busy_Here"):
     for extension in tree.xpath("/include/context/extension"):
         if str(extension.get('name'))=="Local_Extension":
             c=extension.find('condition').get('expression')      
@@ -132,7 +129,7 @@ if (scenario=="None")or(scenario=="Forbidden")or (scenario=="Service_Unavailable
                 f.write(etree.tostring(tree, pretty_print=True))
                 f.close()
                 con.api("reloadxml")
-    if scenario=="None":
+    if scenario=="Normal":
         tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
         for extension in tree.xpath("/include/context/extension"):
             if str(extension.get('name'))=="Forbidden":
@@ -197,7 +194,7 @@ if con.connected():
     con.api("reloadxml") 		
 testnumber=False
 testscenario=False
-scenarioname="None"
+scenarioname="Normal"
 
 tree = etree.parse("/usr/local/freeswitch/conf/dialplan/default.xml")
 for context in tree.xpath("/include/context"):

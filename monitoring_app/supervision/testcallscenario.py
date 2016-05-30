@@ -17,9 +17,7 @@ def get_testcall(id1,dure,interface,checked):
         if checked=="YES":
             os.popen(("tshark -i %s -a duration:%s -w /home/amani/projet/test.pcap &")%(interface,dure))
         os.system("exit")
-        d={}
-        d['statnumber']="done"
-        return messages['statnumber']      
+        return "done"     
     except pxssh.ExceptionPxssh, e:
         print "pxssh failed on login."
         print str(e)

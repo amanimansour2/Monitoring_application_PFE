@@ -15,7 +15,7 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><div style="width:100%;">  
-		  <b>>Général configuration</b>
+		  <b>>General configuration</b>
 		  <button class="btn bn-theme02" style="float:right;height:20px;padding-top: 1px;" data-toggle="modal" data-target="#myModal">?</button>
           </div></a>
         </h4>
@@ -23,20 +23,20 @@
       <div id="collapse1" class="panel-collapse collapse ">
         <div class="panel-body">
 					    <pre>
-				             <p><h4 style="margin-top: 15px;margin-bottom:15px;">>>Reset FreeSWITCH </h4></p>
+				             <b><h4 style="margin-top: 15px;margin-bottom:15px;">Reset FreeSWITCH </h4></b>
 							 <div style="width: 100%;">
 					         <button type="button" class="btn btn-theme03" style="float: left" ng-click="initialize()">Reset</button>
-							 <input type="text" ng-model="initialisation" style="margin: 2px; float: right;width:200px;height:33px;" size="8"/>
+							 <input type="text" ng-model="initialisation" style="margin: 2px; float: right;width:100px;height:33px;"/>
                   		     </div></br>
-				             <p><h4 style="margin-top: 15px;margin-bottom:15px;"></br>>>Communicate all freeSWITCH </h4></p>
+				             <b><h4 style="margin-top: 15px;margin-bottom:15px;"></br>Communicate all freeSWITCH </h4></b>
 				            <div style="width: 100%;">
 					         <button type="button" class="btn btn btn-theme03" style="float: left" ng-click="getmachine3()">Communicate</button>
-                             <input type="text" ng-model="stat" style="margin: 2px; float: right;width:200px;height:33px;" size="8"/>
+                             <input type="text" ng-model="stat" style="margin: 2px; float: right;width:100px;height:33px;"/>
                   		     </div></br>
-				             <p><h4 style="margin-top: 15px;margin-bottom:15px;"></br>>>Check registered numbers  </h4></p>
+				             <b><h4 style="margin-top: 15px;margin-bottom:15px;"></br>Check registered numbers  </h4></b>
 							 <div style="width: 100%;">
 					         <button type="button" class="btn btn-theme03" style="float: left" ng-click="getmachine2()">Get Numbers</button>
-							 <input type="text" ng-model="phone"  style="margin: 2px; float: right;width:200px;height:33px;" size="30"/>
+							 <input type="text" ng-model="phone"  style="margin: 2px; float: right;width:200px;height:33px;"/>
                   		     </div></br>
 						  </pre>
 							<!-- Modal -->
@@ -72,45 +72,42 @@ With this module:
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-        <li class="list-group-item"><h4>>>Add a test number  </h4></br></li>
-		     
-			   <pre>
-                              <h6>   -Insert the test number <input type="text" ng-model="confnumber" size="10"/></h6>
-							 <h6>   -Select the codec <select name="codec"  ng-model="codec">
-							     	<option selected>PCMA<option >PCMU<option >G722<option >G726<option >Opus</select></h6>
-							 <h6><label for="file"> <span class="btn btn-info">Choose a file </span></label> 
-							<input type="file" data-file="param.file" id="file" style="visibility: hidden;" name="file" title="choose a file" /></h6>
-						     <div style="width: 100%;">
-							 <button type="button" class="btn btn-theme03" style="float: left" ng-click="getmachine4()">Add the test number</button>
-                              <input type="text" ng-model="statnumber" style="margin: 2px; float: right;width:200px;height:33px;" />
-		
+			  <pre >
+			   		<b><div style="font-style:italic;font-size: 100%;"><u><em>>>Add a test number</em></u></b></a></div></br>
+
+                              <h6> <b>Insert the test number <input type="text" ng-model="confnumber" size="10"/></h6></b>
+							 <h6><b>Select the codec <select name="codec"  ng-model="codec">
+							     	<option selected>PCMA<option >PCMU<option >G722<option >G726<option >Opus</select></h6></b>
+							<b><label for="file"style="float: left"> <span class="btn-sm btn-theme03">Choose a file </span></label></b>
+							<input type="file" data-file="param.file" id="file" style="visibility: hidden;" name="file" title="choose a file" />
+						     <div style="width: 100%;float: left">
+						 <button type="button" class="btn btn-theme03" style="float: left" ng-click="getmachine4()">Add the test number</button>
+                            <b>  <input type="text" ng-model="statnumber" style="float: right; width:100px;height:33px;" /></b>
 						     </div>
 				</pre>
-           <li class="list-group-item"><h4>>>Remove the test number </h4></li>		
 		      <pre>	
-				             
-                             <h6>   -Enter the test number <input type="text" ng-model="numberconf" size="10"/></h6>
+			   		<b><div style="font-style:italic;font-size: 100%;"><u><em>>>Remove the test number</em></u></b></a></br></br></div> </br>
+                             <h6><b>Enter the test number <input type="text" ng-model="numberconf" size="10"/></h6></b>
 							 <div style="width: 100%;">
 							      <button type="button" class="btn btn-theme03" style="float: left"ng-click="getmachine5()">Remove the test number</button>
-                                  <h6> <input type="text" ng-model="delnumber" style="margin: 2px; float: right;width:200px;height:33px;"size="8"/></h6>
+                                  <h6><b> <input type="text" ng-model="delnumber" style="margin: 2px; float: right;width:100px;height:33px;"/></h6></b>
 						      </div>
-			  </pre>  
-			  <li class="list-group-item"><h4>>>Verify the existence of the audio in both directions</h4></li>		
+							  
+			  </pre>  			  
 		      <pre>	
-				            <h6>    -Insert the IP address <input type="text" ng-model="addcapture" size="15"/></h6>
-							<h6>    -Insert the capture interface<input type="text" ng-model="intercapture" size="10"/></h6>
+			  			  <b><div style="font-style:italic;font-size: 100%;"><u><em>>>Verify the existence of the audio in both directions</em></u></b></a> </b></div></br>
+				            <h6><b>Insert the IP address <input type="text" ng-model="addcapture" size="15"/></h6></b>
+							<h6>  <b>Insert the capture interface<input type="text" ng-model="intercapture" size="10"/></h6></b>
 
-							<h6>    -Insert the capture périod (second)<input type="text" ng-model="timecapture" size="5"/></h6>
+							<h6> <b>Insert the capture périod (second)<input type="text" ng-model="timecapture" size="5"/></h6></b>
 							  <div style="width: 100%;">
 							 <button type="button" class="btn btn-theme03" style="float: left" ng-click="start()">Call the test number </button>
 							 <div style="float: right">
 						    <div style="width: 100%;">
 							 <button type="button" style="float: right" class="btn btn-theme03" ng-click="download()">Listen</button>
-
-							 <h6><input type="text"style="margin: 2px;float: right;width:200px;height:35px;" ng-model="wavname" size="40"/></h6>
-				             </div>
+							 <h6></b><input type="text"style="margin: 2px;float: right;width:250px;height:35px;" ng-model="wavname" /></h6></b>
 							 </div>
-						     </div></br></br>
+						     </div></br></br></div>
                            
 			  </pre>  
 			
@@ -146,47 +143,48 @@ In this module:
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">
-        <li class="list-group-item"><h4>>>Add a soft phone number  </h4></br></li>
-		     
+        <div class="panel-body">		     
 			 <pre>
-                             <h6>Insert the soft phone number <input id="type" type="text" ng-model="numbersoft" size="10"/></h6>
-					         <h6 >Select the scenario :<select id="scenario" name="scenario"  ng-model="scenario" onchange="selecte('scenario')">
-			                 <option selected>None<option >Busy_Here<option >Forbidden<option >Service_Unavailable<option value="Unauthorize">Unauthorize</select></h6>
-							 <div id="port" style="display:none" ><h6 >Insert IP address of your sip phone<input type="text"  ng-model="adphone" size="15"/></h6> </div>							
+			 			  			  <b><div style="font-style:italic;font-size: 100%;"><u><em>>>Add a soft phone number</em></u></b></a> </b></div></br>
+                             <h6><b>Insert the soft phone number <input id="type" type="text" ng-model="numbersoft" size="10"/></h6></b>
+					         <h6 ><b>Select the scenario :<select id="scenario" name="scenario"  ng-model="scenario" onchange="selecte('scenario')"></b>
+			                 <option selected>Normal<option >Busy_Here<option >Forbidden<option >Service_Unavailable<option value="Unauthorize">Unauthorize</select></h6></b>
+							 <div id="port" style="display:none" ><b><h6 >Insert IP address of your sip phone<input type="text"  ng-model="adphone" size="15"/></h6> </b></div>							
 							<div id="dtmf">
-							 <h6><input  type="radio" id="rad5"  ng-model="selecteddd" value="YES" onchange="selection('rad5', 'YES', 'donneee')">With DTMF</h6> 								<div id="donneee" style="display:none">
-									<h6 >Insert the dtmf number<input type="text"  ng-model="dtmf" size="15"/></h6>
+							 <h6><b><input  type="radio" id="rad5"  ng-model="selecteddd" value="YES" onchange="selection('rad5', 'YES', 'donneee')">With DTMF</h6> </b>								<div id="donneee" style="display:none">
+								<h6><b>   Insert the dtmf number<input type="text"  ng-model="dtmf" size="15"/></h6></b>
 							   </div>
-					   <h6><input  type="radio"  ng-model="selecteddd" id="rad6" value="NO" onchange="selection('rad6', 'YES', 'donneee')">Without DTMF</h6>
+					   <h6><b><input  type="radio"  ng-model="selecteddd" id="rad6" value="NO" onchange="selection('rad6', 'YES', 'donneee')">Without DTMF</h6></b>
 							 						
 				</div>
 				<!-- <h6><b>Insert the message: <input type="text" ng-model="msgrecord" size="8"/>Time : <input type="text" ng-model="timerecord" size="8"/></b></h6>--> 
 							 <div style="width: 100%;">
 							<button type="button" class="btn btn-theme03" style="float: left" ng-click="getmachine6()">Add the soft phone number</button>
-                             <h6> <input type="text" ng-model="statnumbersoft" style="margin: 2px; float: right;width:200px;height:33px;"  size="8"/></h6>							
+                          <b>   <h6> <input type="text" ng-model="statnumbersoft" style="margin: 2px; float: right;width:100px;height:33px;"  /></h6></b>							
 				             </div>
-							 <h6><b> Test Scénario</b></h6>
-							  <h6><input  type="radio" id="rad3" style="float: left" ng-model="selectedd" value="YES" onchange="selection('rad3', 'YES', 'donnee')"/>YES</h6> </br>
+				</pre>
+				<pre>
+								  <b><div style="font-style:italic;font-size: 100%;"><u><em>>>Test Scenario</em></u></b></a> </b></div></br>
+							<h6> <b> <input  type="radio" id="rad3" style="float: left" ng-model="selectedd" value="YES" onchange="selection('rad3', 'YES', 'donnee')"/>YES</h6> </br></b>
 								<div id="donnee" style="display:none">
-									<h6> Insert the interface name  :<input type="text" ng-model="interfacc" size="10"/></h6>
-									<h6> Insert the Capture period :<input type="text" ng-model="duree" size="10" /></h6>
+								<h6><b>	 Insert the interface name  :<input type="text" ng-model="interfacc" size="10"/></h6></b>
+								<h6><b>	 Insert the Capture period :<input type="text" ng-model="duree" size="10" /></h6></b>
 							        <button type="button"  class="btn btn-theme03" ng-click="telecharger()">Download</button>
 									
 								<div style="width: 100%;">
-							    <button type="button" class="btn btn-theme03" style="float: left" ng-click="testscenario()">Test scénario</button>
-                                <h6> <input type="text" ng-model="testscenarioo" style="margin: 2px; float: right;width:200px;height:33px;"  size="8"/></h6>							
+							    <button type="button" class="btn btn-theme03" style="float: left" ng-click="testscenario()">Test scenario</button></b>
+                           <h6>  <b>    <input type="text" ng-model="testscenarioo" style="margin: 2px; float: right;width:100px;height:33px;"  /></h6>	</b>						
 				               </div>
 							   </div>
-							   <h6><input  type="radio"  ng-model="selectedd" id="rad4" value="NO" style="float: left" onchange="selection('rad4', 'YES', 'donnee')"/>NO</h6></br></br>
+							<h6> <b> <input  type="radio"  ng-model="selectedd" id="rad4" value="NO" style="float: left" onchange="selection('rad4', 'YES', 'donnee')"/>NO</h6></br></br></b>
 
 				</pre>
-        <li class="list-group-item"><h4>>>Remove the soft phone number </h4></li>		
 		    <pre>	 
-               			<h6>Insert the soft phone number <input type="text" ng-model="numbersoftremove" size="10"/></h6>
+							<b><div style="font-style:italic;font-size: 100%;"><u><em>>>Remove the soft phone number</em></u></b></a> </b></div></br>
+               			<h6><b>Insert the soft phone number <input type="text" ng-model="numbersoftremove" size="10"/></h6></b>
 							 	 <div style="width: 100%;">
-							 <button type="button" class="btn btn-theme03" style="float: left" ng-click="getmachine7()">Remove the soft phone number</button>
-                             <h6><input type="text" ng-model="delnumbersoft" style="margin: 2px; float: right;width:200px;height:33px;"size="8"/></h6>
+							<button type="button" class="btn btn-theme03" style="float: left" ng-click="getmachine7()">Remove the soft phone number</button>
+                          <b>   <h6><input type="text" ng-model="delnumbersoft" style="margin: 2px; float: right;width:100px;height:33px;"/></h6></b>
 							 </div>
 						</pre>  
 							<!-- Modal -->
@@ -202,7 +200,7 @@ In this module:
 <br>Rq: We have used a default password for all numbers :"1234".
 <br> -The engineer can register a number in FreeSWITCH using a soft phone . 
 <br> -During this module we can configure a number and choose a spécifique scénario before and after registration. 
-<br> 1/we have the scenario "None" ,it means that this number can send and  receive a call from any number ,it is a normal call.
+<br> 1/we have the scenario "Normal" ,it means that this number can send and  receive a call from any number ,it is a normal call.
 <br> 2/the scenario "Besy Here" means that this number can call any extension but any one who want to call him ,the FreeSWITCH  will send to it the message 486 . 
 <br> 3/the scenario "Service Unavailable" means that this number can call any extension but any one who want to call him ,the FreeSWITCH  will send to it the message 503 . 
 <br> 4/the scenario "Forbidden" means that this number can call any extension but any one who want to call him ,the FreeSWITCH  will send to it the message 403 . 
@@ -222,7 +220,7 @@ In this module:
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><div style="width:100%;">
 		  
-		  <b>>Execution of differents scénarios SIP</b>
+		  <b>>Execution of differents scenarios SIP</b>
 		  <button class="btn bn-theme02" style="float:right;height:20px;padding-top: 1px;" data-toggle="modal" data-target="#myModal3">?</button>
           </div></a>
         </h4>
@@ -231,40 +229,56 @@ In this module:
         <div class="panel-body">
 		
 		<pre>		
-		<h6><b>INVITE Scenario</b></h6>
-		<div>
-		 <h6>Select the scenario :<select id="scenario1" name="scenario"  ng-model="scenarioinvite" onchange="selecte('scenario1')">
+
+		<b><div style="font-style:italic;font-size: 100%;"><u><em>INVITE Scenario</em></u></b></a></br></br>
+		 <h6><b>Select the scenario :<select id="scenario1" name="scenario"  ng-model="scenarioinvite" >
 			                 <option selected>INVITE_with_name<option >Anonymous_INVITE<option >INVITE_without_SDP</select></b></h6>						
 			                 <h6><b>Test number(caller):<input type="text" ng-model="numsrc" size="8"/></b></h6>
 							 <h6><b>soft phone number (calle):<input type="text" ng-model="numdest" size="8"/></b></h6>
 							   <div style="width: 100%;">
 							<button type="button" class="btn btn-theme03" style="float: left" ng-click="call1()">Test INVITE</button>
+					   <div style="width: 100%;">
 							 <h6><input type="text"  ng-model="statcall1" style="margin: 2px; float: right;width:200px;height:33px;" size="10" /></h6>
+							 <div style="float:left">
+							 <p class="centered"><img src="{% static 'assets/img/circle-green.png' %}" style="float: right"  width="60" height="33" ng_if="statcall1=='PASS ==>INVITE with name'"></p>
+							 <p class="centered"><img src="{% static 'assets/img/circle-green.png' %}" style="float: right"  width="60" height="33" ng_if="statcall1=='PASS ==> INVITE without name'"></p>
+							 <p class="centered"><img src="{% static 'assets/img/circle-green.png' %}" style="float: right"  width="60" height="33" ng_if="statcall1=='PASS ==>INVITE without SDP'"></p>
+							 <p class="centered"><img src="{% static 'assets/img/button-red.png' %}" style="float: right"  width="60" height="33" ng_if="statcall1=='FAIL'"></p>
+							 </div>
                              </div>
+							 </div>
 							 <div>
 							 </br></br>					
-                        </div>
-         <h6><b> Re-INVITE Scenario</b></h6>
-                           <div>
-                            <h6>Select the scenario :<select id="scenario2" name="scenario"  ng-model="scenarioreinvite" onchange="selecte('scenario2')">
+                        </div></br>
+		</div></pre>
+					
+							<pre><b><div style="font-style:italic;font-size: 100%;"><u><em>Re-INVITE Scenario</em></u></b></a>	</br></br>   
+                            <h6><b>Select the scenario :<select id="scenario2" name="scenario"  ng-model="scenarioreinvite">
 			                 <option selected>Pending_Request<option >Temporarily_Unavailable<option >Busy_Everywhere<option >Service_Unavailable</select></b></h6>	
 			                 <h6><b>Insert client number :<input type="text" ng-model="numclient" size="8"/></b></h6>
-			                 <h6><b>Insert client address :<input type="text" ng-model="addclient" size="8"/></b></h6>			
+			                 <h6><b>Insert client address :<input type="text" ng-model="addclient" size="12"/></b></h6>			
                               <div style="width: 100%;">
 							<button type="button" class="btn btn-theme03" style="float: left" ng-click="call2()">Test Re-INVITE</button>
-							 <h6><input type="text"  ng-model="statcall2" style="margin: 2px; float: right;width:200px;height:33px;" size="10" /></h6>
+												   <div style="width: 100%;">
+							 <h6><b><input type="text"  ng-model="statcall2" style="margin: 2px; float: right;width:200px;height:33px;" size="10" /></b></h6>
+							 <div style="float:left">
+							 <p class="centered"><img src="{% static 'assets/img/circle-green.png' %}" style="float: right"  width="60" height="33" ng_if="statcall2=='PASS'"></p>
+							 <p class="centered"><img src="{% static 'assets/img/button-red.png' %}" style="float: right"  width="60" height="33" ng_if="statcall2=='FAIL'"></p>
+							 </div>
+                             </div>
                              </div> 							 
-							 </div>		 
-	                       <div id="add" style="display:none" ><h6 >Insert IP address of your sip phone<input type="text"  ng-model="adressphone" size="15"/></h6> </div>							
-							  <h6>Launch Wireshark:</h6>
-							  <h6><input  type="radio" id="rad1" style="float: left" ng-model="selected" value="YES" onchange="selection('rad1', 'YES', 'donne')"/>YES</h6> </br>
+							 </div>	</pre>
+		 <pre>	<b><div style="font-style:italic;font-size: 100%;"><u><em>Launch Wireshark:</em></u></b></a></br>	   
+
+		 
+							  <h6><b><input  type="radio" id="rad1" style="float: left" ng-model="selected" value="YES" onchange="selection('rad1', 'YES', 'donne')"/>YES</h6> </br>
 								<div id="donne" style="display:none">
-									<h6> Insert the interface name  :<input type="text" ng-model="interfac" size="10"/></h6>
-									<h6> Insert the Capture period :<input type="text" ng-model="dure" size="10" /></h6>
+									<h6><b> Insert the interface name  :<input type="text" ng-model="interfac" size="10"/></b></h6>
+									<h6><b> Insert the Capture period :<input type="text" ng-model="dure" size="10" /></b></h6>
 							        <button type="button"  class="btn btn-theme03" ng-click="telecharger()">Download</button>
 									</div>
-								<h6><input  type="radio"  ng-model="selected" id="rad2" value="NO" style="float: left" onchange="selection('rad2', 'YES', 'donne')"/>NO</h6></br></br>
-								
+								<h6><b><input  type="radio"  ng-model="selected" id="rad2" value="NO" style="float: left" onchange="selection('rad2', 'YES', 'donne')"/>NO</h6></b></br></br>
+								</div>
 						</pre>
 							<!-- Modal -->
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -272,7 +286,7 @@ In this module:
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Execution of differents scénarios SIP</h4>
+<h4 class="modal-title" id="myModalLabel">Execution of differents scenarios SIP</h4>
 </div>
 <div class="modal-body">
 In this section:

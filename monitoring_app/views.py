@@ -282,7 +282,7 @@ def invite_conf(request):
     dure=request.GET.get('dure')
     interface=request.GET.get('interface')
     status=tconfiginvite.get_confcall(numsrc,numdest,scenarioinvite,machine_id,addphone,dure,interface,checked)
-    data = json.dumps({"statcall":status})
+    data = json.dumps({"statcall1":status})
     return HttpResponse(data, content_type='application/json')
 def reinvite_conf(request):
     numclient =  request.GET.get('numclient')
@@ -292,7 +292,7 @@ def reinvite_conf(request):
     dure=request.GET.get('dure')
     interface=request.GET.get('interface')
     status=tconfigreinvite.get_confcall1(numclient,addclient,scenarioreinvite,machine_id,dure,interface,checked)
-    data = json.dumps({"statcall":status})
+    data = json.dumps({"statcall2":status})
     return HttpResponse(data, content_type='application/json')
 def call_test(request):
     checked=request.GET.get('checked')

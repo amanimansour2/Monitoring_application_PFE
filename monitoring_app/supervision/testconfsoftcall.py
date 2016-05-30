@@ -5,7 +5,7 @@ from monitoring_app.models import Machine
 import getpass
 import sys
 import json
-def get_confsoftnumber(number,scenario,timerecord,msgrecord,id1,adphone,dtmf,selecteddd):
+def get_confsoftnumber(number,scenario,id1,adphone,dtmf,selecteddd):
     try:
         machine=Machine.objects.get(id=id1)
         user=str(machine.username) 
@@ -26,7 +26,7 @@ def get_confsoftnumber(number,scenario,timerecord,msgrecord,id1,adphone,dtmf,sel
         s.sendline('su -')
         s.sendline(password)
         print selecteddd
-        s.sendline("python /home/%s/confsoftnumber.py  %s %s %s %s %s %s %s %s" % (user,adsrc,number,scenario,timerecord,msgrecord,adphone,dtmf,selecteddd))   # run a command
+        s.sendline("python /home/%s/confsoftnumber.py  %s %s %s %s %s %s" % (user,adsrc,number,scenario,adphone,dtmf,selecteddd))   # run a command
         s.prompt()             # match the prompt
         message=s.before 
         i=message.find('{')

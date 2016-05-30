@@ -145,7 +145,7 @@ app.controller('monitoringcontroller', ['$scope','$http', '$log', '$window', fun
 
 			});  }				
 	 $scope.numbersoft='1500';
-	 $scope.scenario='None';
+	 $scope.scenario='Normal';
 	 $scope.adphone="192.168.3.1";
 	 $scope.dtmf="0123456789";
 	 $scope.statnumbersoft='No';
