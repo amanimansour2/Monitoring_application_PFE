@@ -6,7 +6,7 @@ usage.close()
 ch= disk.split()
 i=ch[4].replace("%","")
 valint=float(i)
-if valint < 80 :
+if valint < 75 :
     d["disk"]="Secure"
 else:
     d["disk"]="Risky"
